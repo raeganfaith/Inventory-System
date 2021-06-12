@@ -154,7 +154,9 @@ public class LoginView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login first = new Login();
+					Login2 first = new Login2();
+					//panelADMIN pan = new panelADMIN();
+					//pan.setVisible(true);
 					first.setVisible(true);
 					LoginView.this.dispose();
 				}
