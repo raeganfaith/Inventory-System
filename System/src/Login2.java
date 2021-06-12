@@ -125,7 +125,7 @@ public class Login2 extends JFrame {
 		lblcashier.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if(JOptionPane.showConfirmDialog(null, "Do you want to switch to cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					if(JOptionPane.showConfirmDialog(null, "Do you want to switch to admin?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
 						Login first = new Login();
 						first.setVisible(true);
 						Login2.this.dispose();
@@ -144,11 +144,11 @@ public class Login2 extends JFrame {
 		lblcashier.setBounds(136, 164, 115, 29);
 		panelMain.add(lblcashier);
 		
-		JLabel lbladmin = new JLabel("");
-		lbladmin.addMouseListener(new MouseAdapter() {
+		JLabel lblcash = new JLabel("");
+		lblcash.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Do you want to switch to cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to switch to admin?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
 					Login first = new Login();
 					first.setVisible(true);
 					Login2.this.dispose();
@@ -163,9 +163,9 @@ public class Login2 extends JFrame {
 				lblcashier.setForeground(Color.BLACK);
 			
 			}});
-		lbladmin.setBounds(126, 28, 140, 132);
-		panelMain.add(lbladmin);
-		lbladmin.setIcon(new ImageIcon(img_cashier));
+		lblcash.setBounds(126, 28, 140, 132);
+		panelMain.add(lblcash);
+		lblcash.setIcon(new ImageIcon(img_cashier));
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(272, 62, 244, 47);
@@ -246,39 +246,80 @@ public class Login2 extends JFrame {
 		lblNewLabel_2.setBounds(351, 28, 91, 24);
 		panelMain.add(lblNewLabel_2);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3.setBackground(new Color(51, 153, 153));
-		panel_3.setBounds(417, 188, 101, 47);
-		panelMain.add(panel_3);
-		panel_3.setLayout(null);
+		JPanel panelLoginBtn = new JPanel();
+		panelLoginBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					DashboardView first = new DashboardView();
+					first.setVisible(true);
+					Login2.this.dispose();
+				}}
+					//Hovering buttons
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						panelLoginBtn.setBackground(new Color(20, 130, 130));
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						panelLoginBtn.setBackground(new Color(51, 153, 153));
+					}
+					@Override
+					public void mousePressed(MouseEvent e) {
+						panelLoginBtn.setBackground(new Color(80, 183, 183));
+					}
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						panelLoginBtn.setBackground(new Color(20, 130, 130));
+					}});
+		panelLoginBtn.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelLoginBtn.setBackground(new Color(51, 153, 153));
+		panelLoginBtn.setBounds(417, 188, 101, 47);
+		panelMain.add(panelLoginBtn);
+		panelLoginBtn.setLayout(null);
 		
 		JLabel lblLogin2 = new JLabel("LOG IN");
 		lblLogin2.setBounds(0, 10, 101, 27);
-		panel_3.add(lblLogin2);
+		panelLoginBtn.add(lblLogin2);
 		lblLogin2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
-		JPanel panel_3_1 = new JPanel();
-		panel_3_1.addMouseListener(new MouseAdapter() {
+		JPanel panelBack = new JPanel();
+		panelBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
 					LoginView first = new LoginView();
 					first.setVisible(true);
 					Login2.this.dispose();
+				}}
+				//Hovering buttons
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					panelBack.setBackground(new Color(0, 70, 70));
 				}
-		}});
-		panel_3_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3_1.setBackground(new Color(0, 102, 102));
-		panel_3_1.setBounds(272, 188, 101, 47);
-		panelMain.add(panel_3_1);
-		panel_3_1.setLayout(null);
+				@Override
+				public void mouseExited(MouseEvent e) {
+					panelBack.setBackground(new Color(0, 102, 102));
+				}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					panelBack.setBackground(new Color(30, 133, 133));
+				}
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					panelBack.setBackground(new Color(0, 70, 70));
+				}});
+		panelBack.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelBack.setBackground(new Color(0, 102, 102));
+		panelBack.setBounds(272, 188, 101, 47);
+		panelMain.add(panelBack);
+		panelBack.setLayout(null);
 		
 		JLabel lblBack = new JLabel("BACK");
 		lblBack.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBack.setBounds(0, 10, 101, 27);
-		panel_3_1.add(lblBack);
+		panelBack.add(lblBack);
 		lblBack.setFont(new Font("Tahoma", Font.BOLD, 12));
 		setLocationRelativeTo(null);
 	

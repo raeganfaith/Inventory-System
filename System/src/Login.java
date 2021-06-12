@@ -19,6 +19,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -36,10 +37,12 @@ public class Login extends JFrame {
 	private PanelCashier PanelCashier;
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
-
-	/**
-	 * Launch the application.
-	 */
+	
+	//For inserting
+	public static ArrayList <String> email = new ArrayList();
+	public static ArrayList <String> username = new ArrayList();
+	public static ArrayList <String> password = new ArrayList();
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -248,6 +251,31 @@ public class Login extends JFrame {
 		panelMain.add(lblNewLabel_2);
 		
 		JPanel panelLoginBtn = new JPanel();
+		panelLoginBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					DashboardView first = new DashboardView();
+					first.setVisible(true);
+					Login.this.dispose();
+				}}
+					//Hovering buttons
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						panelLoginBtn.setBackground(new Color(20, 130, 130));
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						panelLoginBtn.setBackground(new Color(51, 153, 153));
+					}
+					@Override
+					public void mousePressed(MouseEvent e) {
+						panelLoginBtn.setBackground(new Color(80, 183, 183));
+					}
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						panelLoginBtn.setBackground(new Color(20, 130, 130));
+					}});
 		panelLoginBtn.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelLoginBtn.setBackground(new Color(51, 153, 153));
 		panelLoginBtn.setBounds(417, 188, 101, 47);
@@ -268,9 +296,24 @@ public class Login extends JFrame {
 					LoginView first = new LoginView();
 					first.setVisible(true);
 					Login.this.dispose();
-				}
-			}
-		});
+				}}
+					//Hovering buttons
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						panelBackbtn.setBackground(new Color(0, 70, 70));
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						panelBackbtn.setBackground(new Color(0, 102, 102));
+					}
+					@Override
+					public void mousePressed(MouseEvent e) {
+						panelBackbtn.setBackground(new Color(30, 133, 133));
+					}
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						panelBackbtn.setBackground(new Color(0, 70, 70));
+					}});
 		panelBackbtn.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelBackbtn.setBackground(new Color(0, 102, 102));
 		panelBackbtn.setBounds(272, 188, 101, 47);
