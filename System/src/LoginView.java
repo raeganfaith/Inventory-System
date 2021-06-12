@@ -42,7 +42,7 @@ public class LoginView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 450); //Frame size
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 204, 204));
+		contentPane.setBackground(new Color(51, 153, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -82,7 +82,7 @@ public class LoginView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Admin?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login2 first = new Login2();
+					Login first = new Login();
 					first.setVisible(true);
 					LoginView.this.dispose();
 				}}
@@ -105,7 +105,7 @@ public class LoginView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Admin?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login2 first = new Login2();
+					Login first = new Login();
 					first.setVisible(true);
 					LoginView.this.dispose();
 				}}
@@ -134,7 +134,7 @@ public class LoginView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login2 first = new Login2();
+					Login first = new Login();
 					first.setVisible(true);
 					LoginView.this.dispose();
 				}
@@ -154,7 +154,7 @@ public class LoginView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login2 first = new Login2();
+					Login first = new Login();
 					first.setVisible(true);
 					LoginView.this.dispose();
 				}
@@ -185,7 +185,7 @@ public class LoginView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login2 first = new Login2();
+					Login first = new Login();
 					first.setVisible(true);
 					LoginView.this.dispose();
 				}
