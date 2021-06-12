@@ -23,6 +23,7 @@ import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.border.LineBorder;
+import javax.swing.JLayeredPane;
 
 public class Login extends JFrame {
 	
@@ -125,7 +126,9 @@ public class Login extends JFrame {
 		lbladmn.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					if(JOptionPane.showConfirmDialog(null, "Do you want to switch to cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+						Login2 first = new Login2();
+						first.setVisible(true);
 						Login.this.dispose();
 					}
 				}
@@ -146,7 +149,9 @@ public class Login extends JFrame {
 		lbladmin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to switch to cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					Login2 first = new Login2();
+					first.setVisible(true);
 					Login.this.dispose();
 				}
 			}
@@ -242,30 +247,40 @@ public class Login extends JFrame {
 		lblNewLabel_2.setBounds(351, 28, 91, 24);
 		panelMain.add(lblNewLabel_2);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3.setBackground(new Color(51, 153, 153));
-		panel_3.setBounds(417, 188, 101, 47);
-		panelMain.add(panel_3);
-		panel_3.setLayout(null);
+		JPanel panelLoginBtn = new JPanel();
+		panelLoginBtn.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelLoginBtn.setBackground(new Color(51, 153, 153));
+		panelLoginBtn.setBounds(417, 188, 101, 47);
+		panelMain.add(panelLoginBtn);
+		panelLoginBtn.setLayout(null);
 		
 		JLabel lblLogIn = new JLabel("LOG IN");
 		lblLogIn.setBounds(0, 10, 101, 27);
-		panel_3.add(lblLogIn);
+		panelLoginBtn.add(lblLogIn);
 		lblLogIn.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogIn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
-		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3_1.setBackground(new Color(0, 102, 102));
-		panel_3_1.setBounds(272, 188, 101, 47);
-		panelMain.add(panel_3_1);
-		panel_3_1.setLayout(null);
+		JPanel panelBackbtn = new JPanel();
+		panelBackbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					LoginView first = new LoginView();
+					first.setVisible(true);
+					Login.this.dispose();
+				}
+			}
+		});
+		panelBackbtn.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelBackbtn.setBackground(new Color(0, 102, 102));
+		panelBackbtn.setBounds(272, 188, 101, 47);
+		panelMain.add(panelBackbtn);
+		panelBackbtn.setLayout(null);
 		
 		JLabel lblBack = new JLabel("BACK");
 		lblBack.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBack.setBounds(0, 10, 101, 27);
-		panel_3_1.add(lblBack);
+		panelBackbtn.add(lblBack);
 		lblBack.setFont(new Font("Tahoma", Font.BOLD, 12));
 		setLocationRelativeTo(null);
 	

@@ -14,19 +14,27 @@ import java.awt.Image;
 
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.border.LineBorder;
+import javax.swing.JLayeredPane;
 
 public class Login2 extends JFrame {
 	
 	//To insert images
 	private Image img_logo = new ImageIcon(Login2.class.getResource("ress/logoh.png")).getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
+	//private Image img_cashier = new ImageIcon(Login2.class.getResource("ress/cashier.png")).getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
 	private Image img_cashier = new ImageIcon(Login2.class.getResource("ress/cashier.png")).getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
-	private Image img_admin = new ImageIcon(Login2.class.getResource("ress/admin.png")).getImage().getScaledInstance(130, 160, Image.SCALE_SMOOTH);
 	
 	private JPanel contentPane;
-	private PanelCashier PanelCashier;
+	private JTextField txtUsername;
+	private JPasswordField txtPassword;
 
 	/**
 	 * Launch the application.
@@ -35,7 +43,7 @@ public class Login2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					Login2 frame = new Login2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +60,7 @@ public class Login2 extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 450); //Frame size
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 204, 204));
+		contentPane.setBackground(new Color(51, 153, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -113,79 +121,165 @@ public class Login2 extends JFrame {
 		panelMain.setLayout(null);
 		
 		
-		
-		
-		JLabel lblCash = new JLabel("CASHIER");
-		lblCash.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login2.this.dispose();
-				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblCash.setForeground(Color.GRAY);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblCash.setForeground(Color.BLACK);
-			}
-		});
-		lblCash.setForeground(new Color(0, 51, 51));
-		lblCash.setFont(new Font("Big John", Font.PLAIN, 23));
-		lblCash.setBounds(156, 179, 108, 29);
-		panelMain.add(lblCash);
-		
-		JLabel lbladmn = new JLabel("ADMIN");
-		lbladmn.addMouseListener(new MouseAdapter() {
+		JLabel lblcashier = new JLabel("CASHIER");
+		lblcashier.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					if(JOptionPane.showConfirmDialog(null, "Do you want to switch to cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+						Login first = new Login();
+						first.setVisible(true);
 						Login2.this.dispose();
 					}
 				}
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					lbladmn.setForeground(Color.GRAY);
+					lblcashier.setForeground(Color.GRAY);
 				}
 				@Override
 				public void mouseExited(MouseEvent e) {
-					lbladmn.setForeground(Color.BLACK);
+					lblcashier.setForeground(Color.BLACK);
 			}});
-		lbladmn.setForeground(new Color(0, 51, 51));
-		lbladmn.setFont(new Font("Big John", Font.PLAIN, 23));
-		lbladmn.setBounds(462, 179, 91, 29);
-		panelMain.add(lbladmn);
+		lblcashier.setForeground(new Color(0, 51, 51));
+		lblcashier.setFont(new Font("Big John", Font.PLAIN, 23));
+		lblcashier.setBounds(136, 164, 115, 29);
+		panelMain.add(lblcashier);
 		
 		JLabel lbladmin = new JLabel("");
 		lbladmin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to switch to cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					Login first = new Login();
+					first.setVisible(true);
 					Login2.this.dispose();
 				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lbladmn.setForeground(Color.GRAY);
+				lblcashier.setForeground(Color.GRAY);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				lbladmn.setForeground(Color.BLACK);
+				lblcashier.setForeground(Color.BLACK);
 			
 			}});
-		lbladmin.setBounds(432, 50, 140, 123);
+		lbladmin.setBounds(126, 28, 140, 132);
 		panelMain.add(lbladmin);
-		lbladmin.setIcon(new ImageIcon(img_admin));//setIcon
+		lbladmin.setIcon(new ImageIcon(img_cashier));
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(272, 62, 244, 47);
+		panelMain.add(panel);
+		panel.setLayout(null);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(51, 153, 153));
+		panel_2.setBounds(0, 0, 56, 47);
+		panel.add(panel_2);
 		
-		JLabel lblNewLabel = new JLabel("LOGIN AS:");
-		lblNewLabel.setForeground(new Color(0, 51, 51));
-		lblNewLabel.setFont(new Font("Big John", Font.PLAIN, 25));
-		lblNewLabel.setBounds(286, 10, 140, 40);
-		panelMain.add(lblNewLabel);
+		txtUsername = new JTextField();
+		txtUsername.setBackground(SystemColor.menu);
+		txtUsername.addFocusListener(new FocusAdapter() {
+			//Place holder for showing the username and password inside the JtextField
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtUsername.getText().equals("Username")) {
+					txtUsername.setText("");
+				} else {
+					txtUsername.selectAll();
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtUsername.getText().equals(""))
+					txtUsername.setText("Username");
+			}
+		});
+		txtUsername.setBorder(null);
+		txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtUsername.setText("Username");
+		txtUsername.setBounds(64, 0, 170, 47);
+		panel.add(txtUsername);
+		txtUsername.setColumns(10);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(272, 119, 244, 47);
+		panelMain.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JPanel panel_2_1 = new JPanel();
+		panel_2_1.setBackground(new Color(0, 102, 102));
+		panel_2_1.setBounds(0, 0, 56, 47);
+		panel_1.add(panel_2_1);
+		
+		//To change the default echochar in JPassword Field.
+				txtPassword = new JPasswordField();
+				txtPassword.setBackground(SystemColor.menu);
+				txtPassword.addFocusListener(new FocusAdapter() {
+					@Override
+					public void focusGained(FocusEvent e) {
+						if(txtPassword.getText().equals("Password")) { 
+							txtPassword.setEchoChar('*');//can also be changed to bullet
+							txtPassword.setText("");
+						} else {
+							txtPassword.selectAll();
+						}
+					}
+					@Override
+					public void focusLost(FocusEvent e) {
+						if(txtPassword.getText().equals("")) {
+							txtPassword.setText("Password");
+							txtPassword.setEchoChar((char)0);//So that the password will default to text
+						}
+					}
+				});
+				txtPassword.setBorder(null);
+				txtPassword.setEchoChar((char)0);
+				txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 12));
+				txtPassword.setText("Password");
+				txtPassword.setBounds(64, 0, 170, 47);
+				panel_1.add(txtPassword);
+		
+		JLabel lblNewLabel_2 = new JLabel("SIGN IN:");
+		lblNewLabel_2.setForeground(new Color(0, 51, 51));
+		lblNewLabel_2.setFont(new Font("Big John", Font.PLAIN, 20));
+		lblNewLabel_2.setBounds(351, 28, 91, 24);
+		panelMain.add(lblNewLabel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_3.setBackground(new Color(51, 153, 153));
+		panel_3.setBounds(417, 188, 101, 47);
+		panelMain.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JLabel lblLogin2 = new JLabel("LOG IN");
+		lblLogin2.setBounds(0, 10, 101, 27);
+		panel_3.add(lblLogin2);
+		lblLogin2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogin2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		
+		JPanel panel_3_1 = new JPanel();
+		panel_3_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					LoginView first = new LoginView();
+					first.setVisible(true);
+					Login2.this.dispose();
+				}
+		}});
+		panel_3_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_3_1.setBackground(new Color(0, 102, 102));
+		panel_3_1.setBounds(272, 188, 101, 47);
+		panelMain.add(panel_3_1);
+		panel_3_1.setLayout(null);
+		
+		JLabel lblBack = new JLabel("BACK");
+		lblBack.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBack.setBounds(0, 10, 101, 27);
+		panel_3_1.add(lblBack);
+		lblBack.setFont(new Font("Tahoma", Font.BOLD, 12));
 		setLocationRelativeTo(null);
 	
 		
