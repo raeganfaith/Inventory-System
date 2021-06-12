@@ -18,13 +18,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class LoginView extends JFrame {
+	
 	private Image img_logo2 = new ImageIcon(LoginView.class.getResource("ress/logoh.png")).getImage().getScaledInstance(100, 130, Image.SCALE_SMOOTH);
-	private Image img_cashier2 = new ImageIcon(LoginView.class.getResource("ress/cashier.png")).getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
+	private Image img_cashier2 = new ImageIcon(LoginView.class.getResource("ress/cashier.png")).getImage().getScaledInstance(130, 175, Image.SCALE_SMOOTH);
+	private Image img_admin2 = new ImageIcon(LoginView.class.getResource("ress/admin.png")).getImage().getScaledInstance(140, 165, Image.SCALE_SMOOTH);
 	private JPanel contentPane;
 
-		/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,9 +37,6 @@ public class LoginView extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public LoginView() {
 		setUndecorated(true); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,6 +77,51 @@ public class LoginView extends JFrame {
 		contentPane.add(panelMainLog);
 		panelMainLog.setLayout(null);
 		
+		JLabel lbladmn = new JLabel("ADMIN");
+		lbladmn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Admin?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					Login2 first = new Login2();
+					first.setVisible(true);
+					LoginView.this.dispose();
+				}}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lbladmn.setForeground(Color.GRAY);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					lbladmn.setForeground(Color.BLACK);
+				}
+		});
+		lbladmn.setForeground(new Color(0, 51, 51));
+		lbladmn.setFont(new Font("Big John", Font.PLAIN, 23));
+		lbladmn.setBounds(442, 191, 91, 29);
+		panelMainLog.add(lbladmn);
+		
+		JLabel lbladmin = new JLabel("");
+		lbladmin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Admin?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					Login2 first = new Login2();
+					first.setVisible(true);
+					LoginView.this.dispose();
+				}}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lbladmn.setForeground(Color.GRAY);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					lbladmn.setForeground(Color.BLACK);
+				}
+		});
+		lbladmin.setBounds(411, 66, 140, 122);
+		lbladmin.setIcon(new ImageIcon(img_admin2));
+		panelMainLog.add(lbladmin);
+		
 		JLabel lblNewLabel_2 = new JLabel("LOGIN AS:");
 		lblNewLabel_2.setBounds(293, 23, 113, 24);
 		lblNewLabel_2.setForeground(new Color(0, 51, 51));
@@ -92,6 +133,11 @@ public class LoginView extends JFrame {
 		lblCash.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					Login2 first = new Login2();
+					first.setVisible(true);
+					LoginView.this.dispose();
+				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -107,6 +153,11 @@ public class LoginView extends JFrame {
 		lblCashier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					Login2 first = new Login2();
+					first.setVisible(true);
+					LoginView.this.dispose();
+				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -118,7 +169,7 @@ public class LoginView extends JFrame {
 			}
 		});
 
-		lblCashier.setBounds(149, 51, 120, 130);
+		lblCashier.setBounds(149, 51, 130, 137);
 		lblCashier.setIcon(new ImageIcon(img_cashier2));
 		panelMainLog.add(lblCashier);
 		
@@ -133,15 +184,21 @@ public class LoginView extends JFrame {
 		panelCashier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to Login as Cashier?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
 					Login2 first = new Login2();
 					first.setVisible(true);
 					LoginView.this.dispose();
 				}
 			}
 		});
-		panelCashier.setBounds(149, 65, 145, 155);
+		panelCashier.setBounds(145, 66, 140, 156);
 		panelMainLog.add(panelCashier);
+		
+		JPanel panelAdmin = new JPanel();
+		panelAdmin.setBorder(null);
+		panelAdmin.setBackground(SystemColor.controlHighlight);
+		panelAdmin.setBounds(421, 57, 130, 171);
+		panelMainLog.add(panelAdmin);
 		
 		JLabel CloseButton = new JLabel("X");
 		CloseButton.addMouseListener(new MouseAdapter() {
@@ -166,7 +223,5 @@ public class LoginView extends JFrame {
 		CloseButton.setBounds(680, 0, 20, 20);
 		contentPane.add(CloseButton);
 		setLocationRelativeTo(null);
-		
-		
-		
+	
 	}}
