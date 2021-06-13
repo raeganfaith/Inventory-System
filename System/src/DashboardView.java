@@ -22,6 +22,11 @@ import javax.swing.border.LineBorder;
 public class DashboardView extends JFrame {
 
 	private Image img_logo = new ImageIcon(DashboardView.class.getResource("ress/logoh.png")).getImage().getScaledInstance(100, 130, Image.SCALE_SMOOTH);
+	private Image img_product = new ImageIcon(DashboardView.class.getResource("ress/PRODUCT.png")).getImage().getScaledInstance(130, 110, Image.SCALE_SMOOTH);
+	private Image img_category = new ImageIcon(DashboardView.class.getResource("ress/CATEGORY.png")).getImage().getScaledInstance(130, 110, Image.SCALE_SMOOTH);
+	private Image img_transact = new ImageIcon(DashboardView.class.getResource("ress/TRANSACT.png")).getImage().getScaledInstance(130, 110, Image.SCALE_SMOOTH);
+	private Image img_exit = new ImageIcon(DashboardView.class.getResource("ress/EXIT.png")).getImage().getScaledInstance(130, 110, Image.SCALE_SMOOTH);
+	private Image img_user = new ImageIcon(DashboardView.class.getResource("ress/USER.png")).getImage().getScaledInstance(130, 110, Image.SCALE_SMOOTH);
 	
 	private JPanel contentPane;
 
@@ -47,7 +52,7 @@ public class DashboardView extends JFrame {
 	public DashboardView() {
 		setUndecorated(true); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 450); //Frame size
+		setBounds(100, 100, 700, 550); //Frame size
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(51, 153, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -109,73 +114,209 @@ public class DashboardView extends JFrame {
 		CloseButton.setBounds(680, 0, 20, 20);
 		contentPane.add(CloseButton);
 		
-		JPanel PnlProducts = new JPanel();
-		PnlProducts.setBackground(new Color(51, 153, 153));
-		PnlProducts.setBounds(143, 184, 117, 94);
-		contentPane.add(PnlProducts);
-		
-		JPanel PnlCategories = new JPanel();
-		PnlCategories.setBackground(new Color(51, 153, 153));
-		PnlCategories.setBounds(294, 184, 117, 94);
-		contentPane.add(PnlCategories);
-		
-		JPanel PnlTransactionHistory = new JPanel();
-		PnlTransactionHistory.setBackground(new Color(51, 153, 153));
-		PnlTransactionHistory.setBounds(452, 184, 117, 94);
-		contentPane.add(PnlTransactionHistory);
-		
-		JPanel PnlUsers = new JPanel();
-		PnlUsers.setBackground(new Color(51, 153, 153));
-		PnlUsers.setBounds(228, 297, 117, 94);
-		contentPane.add(PnlUsers);
-		
-		JPanel PnlExit = new JPanel();
-		PnlExit.setBackground(new Color(51, 153, 153));
-		PnlExit.setBounds(386, 297, 117, 94);
-		contentPane.add(PnlExit);
-		
-		
-		
-		JPanel panelLogoutBtn = new JPanel();
-		panelLogoutBtn.addMouseListener(new MouseAdapter() {
+		JLabel lblProducts = new JLabel(" PRODUCTS");
+		lblProducts.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Do you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblProducts.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblProducts.setForeground(Color.BLACK);
+		}});
+		lblProducts.setForeground(new Color(0, 51, 51));
+		lblProducts.setFont(new Font("Big John", Font.PLAIN, 20));
+		lblProducts.setBounds(74, 282, 131, 33);
+		contentPane.add(lblProducts);
+		
+		JPanel PnlProducts = new JPanel();
+		PnlProducts.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblProducts.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblProducts.setForeground(Color.BLACK);
+			}});
+		PnlProducts.setBackground(new Color(51, 153, 153));
+		PnlProducts.setBounds(64, 154, 141, 131);
+		contentPane.add(PnlProducts);
+		PnlProducts.setLayout(null);
+		
+		JLabel lblProduct = new JLabel("");
+		lblProduct.setBounds(10, 10, 149, 125);
+		lblProduct.setIcon(new ImageIcon(img_product));
+		PnlProducts.add(lblProduct);
+		
+		JLabel lblcat = new JLabel(" CATEGORY");
+		lblcat.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblcat.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblcat.setForeground(Color.BLACK);
+			}});
+		lblcat.setForeground(new Color(0, 51, 51));
+		lblcat.setFont(new Font("Big John", Font.PLAIN, 20));
+		lblcat.setBounds(260, 282, 141, 33);
+		contentPane.add(lblcat);
+		
+		JPanel PnlCategories = new JPanel();
+		PnlCategories.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblcat.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblcat.setForeground(Color.BLACK);
+			}});
+		PnlCategories.setBackground(new Color(51, 153, 153));
+		PnlCategories.setBounds(250, 154, 141, 131);
+		contentPane.add(PnlCategories);
+		PnlCategories.setLayout(null);
+		
+		JLabel lblcategory = new JLabel("");
+		lblcategory.setBounds(10, 10, 163, 125);
+		lblcategory.setIcon(new ImageIcon(img_category));
+		PnlCategories.add(lblcategory);
+		
+		JLabel lbltransacthist = new JLabel(" TRANSACT HISTORY");
+		lbltransacthist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lbltransacthist.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lbltransacthist.setForeground(Color.BLACK);
+			}});
+		lbltransacthist.setForeground(new Color(0, 51, 51));
+		lbltransacthist.setFont(new Font("Big John", Font.PLAIN, 20));
+		lbltransacthist.setBounds(422, 282, 242, 33);
+		contentPane.add(lbltransacthist);
+		
+		JPanel PnlTransactionHistory = new JPanel();
+		PnlTransactionHistory.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lbltransacthist.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lbltransacthist.setForeground(Color.BLACK);
+			}});
+		PnlTransactionHistory.setBackground(new Color(51, 153, 153));
+		PnlTransactionHistory.setBounds(469, 154,  141, 131);
+		contentPane.add(PnlTransactionHistory);
+		PnlTransactionHistory.setLayout(null);
+		
+		JLabel lbltransact = new JLabel("");
+		lbltransact.setBounds(10, 10,163, 125);
+		lbltransact.setIcon(new ImageIcon(img_transact));
+		PnlTransactionHistory.add(lbltransact);
+		
+		JLabel lblUser = new JLabel("USER");
+		lblUser.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblUser.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblUser.setForeground(Color.BLACK);
+			}});
+		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUser.setForeground(new Color(0, 51, 51));
+		lblUser.setFont(new Font("Big John", Font.PLAIN, 20));
+		lblUser.setBounds(171, 459, 131, 33);
+		contentPane.add(lblUser);
+		
+		JPanel PnlUsers = new JPanel();
+		PnlUsers.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblUser.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblUser.setForeground(Color.BLACK);
+			}});
+		PnlUsers.setBackground(new Color(51, 153, 153));
+		PnlUsers.setBounds(161, 325, 163, 131);
+		contentPane.add(PnlUsers);
+		PnlUsers.setLayout(null);
+		
+		JLabel lblUsers = new JLabel("");
+		lblUsers.setBounds(10, 0, 173, 145);
+		lblUsers.setIcon(new ImageIcon(img_user));
+		PnlUsers.add(lblUsers);
+		
+		JLabel lblexit = new JLabel("EXIT");
+		lblexit.setHorizontalAlignment(SwingConstants.CENTER);
+		lblexit.setForeground(new Color(0, 51, 51));
+		lblexit.setFont(new Font("Big John", Font.PLAIN, 20));
+		lblexit.setBounds(383, 451, 131, 41);
+		contentPane.add(lblexit);
+		
+		JPanel PnlExit = new JPanel();
+		PnlExit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to Exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
 					LoginView first = new LoginView();
 					first.setVisible(true);
 					DashboardView.this.dispose();
-				}}
-					//Hovering buttons
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						panelLogoutBtn.setBackground(new Color(0, 70, 70));
-					}
-					@Override
-					public void mouseExited(MouseEvent e) {
-						panelLogoutBtn.setBackground(new Color(0, 102, 102));
-					}
-					@Override
-					public void mousePressed(MouseEvent e) {
-						panelLogoutBtn.setBackground(new Color(30, 133, 133));
-					}
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						panelLogoutBtn.setBackground(new Color(0, 70, 70));
-					}});
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblexit.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblexit.setForeground(Color.BLACK);
+			}});
+		PnlExit.setBackground(new Color(51, 153, 153));
+		PnlExit.setBounds(373, 325, 163, 125);
+		contentPane.add(PnlExit);
+		PnlExit.setLayout(null);
+		
+		JLabel lblExit = new JLabel("");
+		lblExit.setBounds(10, 0, 163, 135);
+		lblExit.setIcon(new ImageIcon(img_exit));
+		PnlExit.add(lblExit);
+		
+	
 		
 		
-		
-		panelLogoutBtn.setLayout(null);
-		panelLogoutBtn.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelLogoutBtn.setBackground(new Color(51, 102, 102));
-		panelLogoutBtn.setBounds(294, 413, 134, 27);
-		contentPane.add(panelLogoutBtn);
-		
-		JLabel lblLogin2 = new JLabel("LOG IN");
-		lblLogin2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogin2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblLogin2.setBounds(0, 0, 134, 27);
-		panelLogoutBtn.add(lblLogin2);
 		
 	}
 
