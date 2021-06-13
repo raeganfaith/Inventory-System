@@ -144,7 +144,16 @@ public class UserView extends JFrame {
 		
 		
 		
-		JButton btnEdit = new JButton("EDIT");
+		JButton btnEdit = new JButton("UPDATE");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table .getSelectedRow();
+				model.setValueAt(name.getText(), i, 0);
+				model.setValueAt(phone.getText(), i, 1);
+				model.setValueAt(info.getText(), i, 2);
+				model.setValueAt(role.getText(), i, 3);
+			}
+		});
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnEdit.setBounds(161, 338, 100, 30);
 		contentPane.add(btnEdit);
@@ -165,6 +174,16 @@ public class UserView extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = table.getSelectedRow();
+				name.setText(model.getValueAt(i, 0).toString());
+				phone.setText(model.getValueAt(i, 0).toString());
+				info.setText(model.getValueAt(i, 0).toString());
+				role.setText(model.getValueAt(i, 0).toString());
+			}
+		});
 		model = new DefaultTableModel();
 		Object[] column = {"Name","Phone","Info","Role"};
 		final Object[] row = new Object[4];
