@@ -98,7 +98,7 @@ public class TransactHistoryView extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("TRANSACTION HISTORY");
 		lblNewLabel_2.setForeground(SystemColor.menu);
 		lblNewLabel_2.setFont(new Font("Big John", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(207, 152, 317, 24);
+		lblNewLabel_2.setBounds(213, 152, 287, 24);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Product ID:");

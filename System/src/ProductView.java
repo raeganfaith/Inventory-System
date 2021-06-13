@@ -211,5 +211,10 @@ public class ProductView extends JFrame {
 		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		CloseButton.setBounds(680, 0, 20, 20);
 		contentPane.add(CloseButton);
+		
+		JLabel lblNewLabel_4 = new JLabel("\u2190");
+		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
+		lblNewLabel_4.setBounds(10, 0, 45, 38);
+		contentPane.add(lblNewLabel_4);
 	}
 }
