@@ -51,7 +51,6 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField userField;
 	private JPasswordField passwordField;
-	private JLabel lblLoginMessage = new JLabel(""); 
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -118,10 +117,13 @@ public class Login extends JFrame {
             Password = raf.readLine().substring(10);
             
             if(user.equals(Username)& password.equals(Password)) {
-                JOptionPane.showMessageDialog(null, "password matched");
+                JOptionPane.showMessageDialog(null, "Login Successful!");
+                DashboardView first = new DashboardView();
+				first.setVisible(true);
+				Login.this.setVisible(false);
             }
             else {
-                JOptionPane.showMessageDialog(null, "wrong user/Password");
+                JOptionPane.showMessageDialog(null, "Wrong user/Password");
             }
         } 
         catch (FileNotFoundException e) {
@@ -142,10 +144,13 @@ public class Login extends JFrame {
                 String forPass = raf.readLine().substring(10);
                 
                 if(user.equals(forUser) & password.equals(forPass)) {
-                    JOptionPane.showMessageDialog(null, "password matched");
+                    JOptionPane.showMessageDialog(null, "Login Successful!");
+                    DashboardView first = new DashboardView();
+					first.setVisible(true);
+					Login.this.setVisible(false);
                     break;
                 }else if(i == (ln-2)){
-                    JOptionPane.showMessageDialog(null, "incorrect username/password");
+                    JOptionPane.showMessageDialog(null, "Incorrect username/password");
                     break;
                 }
                 for(int k = 1; k < 2; k++){
@@ -186,8 +191,6 @@ public class Login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
 		
 		JLabel CloseButton = new JLabel("X");
 		CloseButton.addMouseListener(new MouseAdapter() {

@@ -117,10 +117,13 @@ public class Login2 extends JFrame {
             Password = raf.readLine().substring(10);
             
             if(user.equals(Username)& password.equals(Password)) {
-                JOptionPane.showMessageDialog(null, "password matched");
+                JOptionPane.showMessageDialog(null, "Login Successful!");
+                DashboardView first = new DashboardView();
+				first.setVisible(true);
+				Login2.this.setVisible(false);
             }
             else {
-                JOptionPane.showMessageDialog(null, "wrong user/Password");
+                JOptionPane.showMessageDialog(null, "Wrong user/Password");
             }
         } 
         catch (FileNotFoundException e) {
@@ -141,10 +144,13 @@ public class Login2 extends JFrame {
                 String forPass = raf.readLine().substring(10);
                 
                 if(user.equals(forUser) & password.equals(forPass)) {
-                    JOptionPane.showMessageDialog(null, "password matched");
+                    JOptionPane.showMessageDialog(null, "Login Successful!");
+                    DashboardView first = new DashboardView();
+					first.setVisible(true);
+					Login2.this.setVisible(false);
                     break;
                 }else if(i == (ln-2)){
-                    JOptionPane.showMessageDialog(null, "incorrect username/password");
+                    JOptionPane.showMessageDialog(null, "Incorrect username/password");
                     break;
                 }
                 for(int k = 1; k < 2; k++){
