@@ -34,10 +34,10 @@ public class UserView extends JFrame {
 	private JTextField phone;
 	private JTextField info;
 	private JTextField role;
-	private JTextField password;
 	DefaultTableModel model;
 
 	private JTable table;
+	private JTextField password;
 	/**
 	 * Launch the application.
 	 */
@@ -143,7 +143,10 @@ public class UserView extends JFrame {
 		role.setBounds(122, 299, 139, 19);
 		contentPane.add(role);
 		
-		
+		password = new JTextField();
+		password.setColumns(10);
+		password.setBounds(122, 232, 139, 19);
+		contentPane.add(password);
 		
 		JButton btnEdit = new JButton("UPDATE");
 		btnEdit.addActionListener(new ActionListener() {
@@ -157,7 +160,7 @@ public class UserView extends JFrame {
 			}
 		});
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(161, 338, 100, 30);
+		btnEdit.setBounds(161, 361, 100, 30);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("DELETE");
@@ -168,7 +171,7 @@ public class UserView extends JFrame {
 			}
 		});
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnDelete.setBounds(94, 378, 100, 30);
+		btnDelete.setBounds(94, 401, 100, 30);
 		contentPane.add(btnDelete);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -188,8 +191,8 @@ public class UserView extends JFrame {
 			}
 		});
 		model = new DefaultTableModel();
-		Object[] column = {"Name","Phone","Info","Role"};
-		final Object[] row = new Object[4];
+		Object[] column = {"Name","Phone","Info","Role","password"};
+		final Object[] row = new Object[5];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
@@ -212,7 +215,7 @@ public class UserView extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(30, 338, 100, 30);
+		btnNewButton.setBounds(30, 361, 100, 30);
 		contentPane.add(btnNewButton);
 		
 		JLabel CloseButton = new JLabel("X");
@@ -251,5 +254,15 @@ public class UserView extends JFrame {
 		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
 		lblNewLabel_4.setBounds(10, 0, 45, 38);
 		contentPane.add(lblNewLabel_4);
+		
+		JLabel pass = new JLabel("Password:");
+		pass.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		pass.setBounds(30, 328, 87, 24);
+		contentPane.add(pass);
+		
+		password = new JTextField();
+		password.setColumns(10);
+		password.setBounds(122, 333, 139, 19);
+		contentPane.add(password);
 	}
 }

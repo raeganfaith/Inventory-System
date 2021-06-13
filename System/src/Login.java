@@ -148,7 +148,7 @@ public class Login extends JFrame {
                     Login.this.setVisible(false);
                     break;
                 }else if(i == (ln-2)){
-                    JOptionPane.showMessageDialog(null, "incorrect username/password");
+                    JOptionPane.showMessageDialog(null, "Incorrect username/password");
                     break;
                 }
                 for(int k = 1; k < 2; k++){
