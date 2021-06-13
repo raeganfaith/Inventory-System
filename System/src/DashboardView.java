@@ -110,24 +110,29 @@ public class DashboardView extends JFrame {
 		contentPane.add(CloseButton);
 		
 		JPanel PnlProducts = new JPanel();
+		PnlProducts.setBackground(new Color(51, 153, 153));
 		PnlProducts.setBounds(143, 184, 117, 94);
 		contentPane.add(PnlProducts);
 		
 		JPanel PnlCategories = new JPanel();
+		PnlCategories.setBackground(new Color(51, 153, 153));
 		PnlCategories.setBounds(294, 184, 117, 94);
 		contentPane.add(PnlCategories);
 		
 		JPanel PnlTransactionHistory = new JPanel();
+		PnlTransactionHistory.setBackground(new Color(51, 153, 153));
 		PnlTransactionHistory.setBounds(452, 184, 117, 94);
 		contentPane.add(PnlTransactionHistory);
 		
 		JPanel PnlUsers = new JPanel();
+		PnlUsers.setBackground(new Color(51, 153, 153));
 		PnlUsers.setBounds(228, 297, 117, 94);
 		contentPane.add(PnlUsers);
 		
-		JPanel PnlProducts_1_1_2 = new JPanel();
-		PnlProducts_1_1_2.setBounds(386, 297, 117, 94);
-		contentPane.add(PnlProducts_1_1_2);
+		JPanel PnlExit = new JPanel();
+		PnlExit.setBackground(new Color(51, 153, 153));
+		PnlExit.setBounds(386, 297, 117, 94);
+		contentPane.add(PnlExit);
 		
 		
 		
