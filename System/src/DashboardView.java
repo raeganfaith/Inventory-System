@@ -280,6 +280,18 @@ public class DashboardView extends JFrame {
 		PnlUsers.add(lblUsers);
 		
 		JLabel lblexit = new JLabel("EXIT");
+		lblexit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblexit.setForeground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblexit.setForeground(Color.BLACK);
+			}});
 		lblexit.setHorizontalAlignment(SwingConstants.CENTER);
 		lblexit.setForeground(new Color(0, 51, 51));
 		lblexit.setFont(new Font("Big John", Font.PLAIN, 20));
