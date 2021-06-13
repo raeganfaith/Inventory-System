@@ -118,6 +118,9 @@ public class DashboardView extends JFrame {
 		lblProducts.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+					ProductView first = new ProductView();
+					first.setVisible(true);
+					DashboardView.this.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -136,6 +139,9 @@ public class DashboardView extends JFrame {
 		PnlProducts.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+					ProductView first = new ProductView();
+					first.setVisible(true);
+					DashboardView.this.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -159,6 +165,9 @@ public class DashboardView extends JFrame {
 		lblcat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+					CategoryView first = new CategoryView();
+					first.setVisible(true);
+					DashboardView.this.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -177,6 +186,9 @@ public class DashboardView extends JFrame {
 		PnlCategories.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+					CategoryView first = new CategoryView();
+					first.setVisible(true);
+					DashboardView.this.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -200,6 +212,9 @@ public class DashboardView extends JFrame {
 		lbltransacthist.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+					TransactHistoryView first = new TransactHistoryView();
+					first.setVisible(true);
+					DashboardView.this.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -218,6 +233,9 @@ public class DashboardView extends JFrame {
 		PnlTransactionHistory.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+					TransactHistoryView first = new TransactHistoryView();
+					first.setVisible(true);
+					DashboardView.this.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -241,6 +259,9 @@ public class DashboardView extends JFrame {
 		lblUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+					UserView first = new UserView();
+					first.setVisible(true);
+					DashboardView.this.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -260,6 +281,9 @@ public class DashboardView extends JFrame {
 		PnlUsers.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+					UserView first = new UserView();
+					first.setVisible(true);
+					DashboardView.this.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
