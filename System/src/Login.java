@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,15 +36,21 @@ import javax.swing.JLayeredPane;
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 public class Login extends JFrame {
+	
+	File f = new File("C:\\\\Users\\\\mynam\\\\Desktop\\\\UniStore");
+    int ln;
+    String Username, Password;
+
 	  
 	//To insert images
 	private Image img_logo = new ImageIcon(Login.class.getResource("ress/logoh.png")).getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
 	private Image img_admin = new ImageIcon(Login.class.getResource("ress/admin.png")).getImage().getScaledInstance(130, 160, Image.SCALE_SMOOTH); 
 	private JPanel contentPane;
-	private JTextField txtUsername;
-	private JPasswordField txtPassword;
+	private JTextField userField;
+	private JPasswordField passwordField;
 	private JLabel lblLoginMessage = new JLabel(""); 
 	
 	public static void main(String[] args) {
@@ -59,9 +66,117 @@ public class Login extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	void createFolder(){
+        if(!f.exists()){
+            f.mkdirs();
+        }
+	}
+	void readFile(){
+        try {
+            FileReader fr = new FileReader(f+ "\\info.txt");
+            System.out.println("file exists!");
+        }
+        catch (FileNotFoundException ex) {
+        	try {
+                FileWriter fw = new FileWriter(f+ "\\info.txt");
+                System.out.println("File created");
+            } 
+        	catch (IOException e) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+    }
+    
+    void addData(String user,String password){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+ "\\info.txt", "rw");
+            for(int i = 0; i < ln; i++) {
+                raf.readLine();
+            }
+            //if condition added after video to have no lines on first entry
+            if(ln > 0) {
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
+            }
+            raf.writeBytes("Username: " + user + "\r\n");
+            raf.writeBytes("Password: " + password);
+        } 
+        catch (FileNotFoundException e) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+        } 
+        catch (IOException e) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    void checkData(String user, String password){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+ "\\info.txt", "rw");
+            
+            String line = raf.readLine();
+            Username = line.substring(10);
+            Password = raf.readLine().substring(10);
+            
+            if(user.equals(Username)& password.equals(Password)) {
+                JOptionPane.showMessageDialog(null, "password matched");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "wrong user/Password");
+            }
+        } 
+        catch (FileNotFoundException e) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+        } 
+        catch (IOException e) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+        }    
+    }
+    
+    void logic(String user, String password){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+ "\\info.txt", "rw");
+            for(int i = 0; i < ln; i+=3) {
+            	System.out.println("count " + i);
+            
+                String forUser = raf.readLine().substring(10);
+                String forPass = raf.readLine().substring(10);
+                
+                if(user.equals(forUser) & password.equals(forPass)) {
+                    JOptionPane.showMessageDialog(null, "password matched");
+                    break;
+                }else if(i == (ln-2)){
+                    JOptionPane.showMessageDialog(null, "incorrect username/password");
+                    break;
+                }
+                for(int k = 1; k < 2; k++){
+                    raf.readLine();
+                }
+            }
+        } 
+        catch (FileNotFoundException e) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+        } 
+        catch (IOException e) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    void countLines(){
+        try {
+            ln = 0;
+            RandomAccessFile raf = new RandomAccessFile(f+ "\\info.txt", "rw");
+            for(int i = 0; raf.readLine()!= null; i++){
+                ln++;
+            }
+            System.out.println("number of lines:" + ln);
+        } 
+        catch (FileNotFoundException e) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+        } 
+        catch (IOException e) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 	public Login() {
 		setUndecorated(true); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,18 +223,6 @@ public class Login extends JFrame {
 		lblStore.setFont(new Font("Big John", Font.PLAIN, 57));
 		lblStore.setBounds(379, 60, 209, 82);
 		contentPane.add(lblStore);
-		
-		JLabel lblUni = new JLabel("UNI");
-		lblUni.setForeground(new Color(245, 245, 245));
-		lblUni.setFont(new Font("Big John", Font.PLAIN, 57));
-		lblUni.setBounds(272, 65, 124, 72);
-		contentPane.add(lblUni);
-		
-		JLabel lblNewLabel_1 = new JLabel("Inventory system");
-		lblNewLabel_1.setForeground(new Color(153, 204, 204));
-		lblNewLabel_1.setFont(new Font("Big John", Font.PLAIN, 21));
-		lblNewLabel_1.setBounds(282, 112, 242, 48);
-		contentPane.add(lblNewLabel_1);
 		
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(SystemColor.controlHighlight);
@@ -184,30 +287,30 @@ public class Login extends JFrame {
 		panel_2.setBounds(0, 0, 56, 47);
 		panel.add(panel_2);
 		
-		txtUsername = new JTextField();
-		txtUsername.setBackground(SystemColor.menu);
-		txtUsername.addFocusListener(new FocusAdapter() {
+		userField = new JTextField();
+		userField.setBackground(SystemColor.menu);
+		userField.addFocusListener(new FocusAdapter() {
 			//Place holder for showing the username and password inside the JtextField
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(txtUsername.getText().equals("Username")) {
-					txtUsername.setText("");
+				if(userField.getText().equals("Username")) {
+					userField.setText("");
 				} else {
-					txtUsername.selectAll();
+					userField.selectAll();
 				}
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(txtUsername.getText().equals(""))
-					txtUsername.setText("Username");
+				if(userField.getText().equals(""))
+					userField.setText("Username");
 			}
 		});
-		txtUsername.setBorder(null);
-		txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtUsername.setText("Username");
-		txtUsername.setBounds(64, 0, 170, 47);
-		panel.add(txtUsername);
-		txtUsername.setColumns(10);
+		userField.setBorder(null);
+		userField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		userField.setText("Username");
+		userField.setBounds(64, 0, 170, 47);
+		panel.add(userField);
+		userField.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(272, 119, 244, 47);
@@ -220,32 +323,32 @@ public class Login extends JFrame {
 		panel_1.add(panel_2_1);
 		
 		//To change the default echochar in JPassword Field.
-				txtPassword = new JPasswordField();
-				txtPassword.setBackground(SystemColor.menu);
-				txtPassword.addFocusListener(new FocusAdapter() {
+				passwordField = new JPasswordField();
+				passwordField.setBackground(SystemColor.menu);
+				passwordField.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent e) {
-						if(txtPassword.getText().equals("Password")) { 
-							txtPassword.setEchoChar('*');//can also be changed to bullet
-							txtPassword.setText("");
+						if(passwordField.getText().equals("Password")) { 
+							passwordField.setEchoChar('*');//can also be changed to bullet
+							passwordField.setText("");
 						} else {
-							txtPassword.selectAll();
+							passwordField.selectAll();
 						}
 					}
 					@Override
 					public void focusLost(FocusEvent e) {
-						if(txtPassword.getText().equals("")) {
-							txtPassword.setText("Password");
-							txtPassword.setEchoChar((char)0);//So that the password will default to text
+						if(passwordField.getText().equals("")) {
+							passwordField.setText("Password");
+							passwordField.setEchoChar((char)0);//So that the password will default to text
 						}
 					}
 				});
-				txtPassword.setBorder(null);
-				txtPassword.setEchoChar((char)0);
-				txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 12));
-				txtPassword.setText("Password");
-				txtPassword.setBounds(64, 0, 170, 47);
-				panel_1.add(txtPassword);
+				passwordField.setBorder(null);
+				passwordField.setEchoChar((char)0);
+				passwordField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+				passwordField.setText("Password");
+				passwordField.setBounds(64, 0, 170, 47);
+				panel_1.add(passwordField);
 		
 		JLabel lblNewLabel_2 = new JLabel("SIGN IN:");
 		lblNewLabel_2.setForeground(new Color(0, 51, 51));
@@ -260,102 +363,13 @@ public class Login extends JFrame {
 		panelMain.add(lblLoginMessage);
 		setLocationRelativeTo(null);
 		
-		JPanel panelLoginBtn = new JPanel();
-		panelLoginBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {	
-				String user = txtUsername.getText();
-				String pass = txtPassword.getText();
-				
-				if(user.equals("Admin1") && pass.equals("admin123") || user.equals("Admin2") && pass.equals("admin456")) {
-					JOptionPane.showMessageDialog(null, "Login Successful!");
-					DashboardView dv = new DashboardView();
-					dv.setVisible(true);
-					Login.this.dispose();
-				}
-				else if(user.equals("") || pass.equals("") || user.equals("Username") || pass.equals("Password")) {
-					JOptionPane.showMessageDialog(null, "Please input all requirements!");
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Username and Password didn't match!");
-				}
-			}
-	
-			//Hovering buttons
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						panelLoginBtn.setBackground(new Color(20, 130, 130));
-					}
-					@Override
-					public void mouseExited(MouseEvent e) {
-						panelLoginBtn.setBackground(new Color(51, 153, 153));
-					}
-					@Override
-					public void mousePressed(MouseEvent e) {
-						panelLoginBtn.setBackground(new Color(80, 183, 183));
-					}
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						panelLoginBtn.setBackground(new Color(20, 130, 130));
-					}});
-		panelLoginBtn.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelLoginBtn.setBackground(new Color(51, 153, 153));
-		panelLoginBtn.setBounds(417, 188, 101, 47);
-		panelMain.add(panelLoginBtn);
-		panelLoginBtn.setLayout(null);
-		
-		JLabel lblLogIn = new JLabel("LOG IN");
-		lblLogIn.setBounds(0, 10, 101, 27);
-		panelLoginBtn.add(lblLogIn);
-		lblLogIn.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogIn.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JPanel panelBackbtn = new JPanel();
-		panelBackbtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					
-					LoginView first = new LoginView();
-					first.setVisible(true);
-					Login.this.dispose();
-				}}
-					//Hovering buttons
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						panelBackbtn.setBackground(new Color(0, 70, 70));
-					}
-					@Override
-					public void mouseExited(MouseEvent e) {
-						panelBackbtn.setBackground(new Color(0, 102, 102));
-					}
-					@Override
-					public void mousePressed(MouseEvent e) {
-						panelBackbtn.setBackground(new Color(30, 133, 133));
-					}
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						panelBackbtn.setBackground(new Color(0, 70, 70));
-					}});
-		panelBackbtn.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelBackbtn.setBackground(new Color(0, 102, 102));
-		panelBackbtn.setBounds(272, 188, 101, 47);
-		panelMain.add(panelBackbtn);
-		panelBackbtn.setLayout(null);
-		
-		JLabel lblBack = new JLabel("BACK");
-		lblBack.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBack.setBounds(0, 10, 101, 27);
-		panelBackbtn.add(lblBack);
-		lblBack.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
 		JCheckBox ShowPass = new JCheckBox("Show Password");
 		ShowPass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (ShowPass.isSelected()) {
-					txtPassword.setEchoChar((char)0);
+					passwordField.setEchoChar((char)0);
 				}else {
-					txtPassword.setEchoChar('*');//Can be changed to bullet •
+					passwordField.setEchoChar('*');//Can be changed to bullet •
 				}
 			}
 		});
@@ -363,6 +377,44 @@ public class Login extends JFrame {
 		ShowPass.setBackground(SystemColor.controlHighlight);
 		ShowPass.setBounds(437, 170, 152, 13);
 		panelMain.add(ShowPass);
+		
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.setBackground(new Color(51, 153, 153));
+		btnLogin.setBounds(415, 189, 101, 43);
+		panelMain.add(btnLogin);
+		
+		JButton btnNewButton = new JButton("CANCEL");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					LoginView first = new LoginView();
+					first.setVisible(true);
+					Login.this.dispose();
+				}}
+			}
+	);
+		btnNewButton.setBackground(new Color(51, 102, 102));
+		btnNewButton.setBounds(272, 188, 101, 47);
+		panelMain.add(btnNewButton);
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createFolder();
+				readFile();
+				countLines();
+				logic(userField.getText(), passwordField.getText());
+			}}
+	);
+		JLabel lblUni = new JLabel("UNI");
+		lblUni.setForeground(new Color(245, 245, 245));
+		lblUni.setFont(new Font("Big John", Font.PLAIN, 57));
+		lblUni.setBounds(272, 65, 124, 72);
+		contentPane.add(lblUni);
+		
+		JLabel lblNewLabel_1 = new JLabel("Inventory system");
+		lblNewLabel_1.setForeground(new Color(153, 204, 204));
+		lblNewLabel_1.setFont(new Font("Big John", Font.PLAIN, 21));
+		lblNewLabel_1.setBounds(282, 112, 242, 48);
+		contentPane.add(lblNewLabel_1);
 
-	}
-}
+	}}
+
