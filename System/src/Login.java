@@ -40,7 +40,7 @@ import javax.swing.JButton;
 
 public class Login extends JFrame {
 	
-	File f = new File("C:\\\\Users\\\\mynam\\\\Desktop\\\\UniStore");
+	File f = new File("C:\\Users\\mynam\\Desktop\\system");
     int ln;
     String Username, Password;
 
@@ -51,6 +51,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField userField;
 	private JPasswordField passwordField;
+	private JLabel lblLoginMessage = new JLabel(""); 
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -118,12 +119,9 @@ public class Login extends JFrame {
             
             if(user.equals(Username)& password.equals(Password)) {
                 JOptionPane.showMessageDialog(null, "Login Successful!");
-                DashboardView first = new DashboardView();
-				first.setVisible(true);
-				Login.this.setVisible(false);
             }
             else {
-                JOptionPane.showMessageDialog(null, "Wrong user/Password");
+                JOptionPane.showMessageDialog(null, "wrong user/Password");
             }
         } 
         catch (FileNotFoundException e) {
@@ -145,12 +143,12 @@ public class Login extends JFrame {
                 
                 if(user.equals(forUser) & password.equals(forPass)) {
                     JOptionPane.showMessageDialog(null, "Login Successful!");
-                    DashboardView first = new DashboardView();
-					first.setVisible(true);
-					Login.this.setVisible(false);
+                    DashboardView dv = new DashboardView();
+                    dv.setVisible(true);
+                    Login.this.setVisible(false);
                     break;
                 }else if(i == (ln-2)){
-                    JOptionPane.showMessageDialog(null, "Incorrect username/password");
+                    JOptionPane.showMessageDialog(null, "incorrect username/password");
                     break;
                 }
                 for(int k = 1; k < 2; k++){
@@ -165,6 +163,7 @@ public class Login extends JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+    
     
     void countLines(){
         try {
@@ -372,7 +371,7 @@ public class Login extends JFrame {
 				if (ShowPass.isSelected()) {
 					passwordField.setEchoChar((char)0);
 				}else {
-					passwordField.setEchoChar('*');//Can be changed to bullet •
+					passwordField.setEchoChar('*');
 				}
 			}
 		});
@@ -385,7 +384,14 @@ public class Login extends JFrame {
 		btnLogin.setBackground(new Color(51, 153, 153));
 		btnLogin.setBounds(415, 189, 101, 43);
 		panelMain.add(btnLogin);
-		
+
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createFolder();
+				readFile();
+				countLines();
+				logic(userField.getText(), passwordField.getText());
+			}});
 		JButton btnNewButton = new JButton("CANCEL");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -399,13 +405,6 @@ public class Login extends JFrame {
 		btnNewButton.setBackground(new Color(51, 102, 102));
 		btnNewButton.setBounds(272, 188, 101, 47);
 		panelMain.add(btnNewButton);
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				createFolder();
-				readFile();
-				countLines();
-				logic(userField.getText(), passwordField.getText());
-			}});
 		JLabel lblUni = new JLabel("UNI");
 		lblUni.setForeground(new Color(245, 245, 245));
 		lblUni.setFont(new Font("Big John", Font.PLAIN, 57));
@@ -417,6 +416,7 @@ public class Login extends JFrame {
 		lblNewLabel_1.setFont(new Font("Big John", Font.PLAIN, 21));
 		lblNewLabel_1.setBounds(282, 112, 242, 48);
 		contentPane.add(lblNewLabel_1);
+		
 
 	}}
 

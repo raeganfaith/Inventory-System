@@ -40,7 +40,7 @@ import javax.swing.JButton;
 //CASHIER
 public class Login2 extends JFrame {
 	
-	File f = new File("C:\\\\Users\\\\mynam\\\\Desktop\\\\UniStore");
+	File f = new File("C:\\\\Users\\\\mynam\\\\Desktop\\\\system");
     int ln;
     String Username, Password;
 
@@ -117,13 +117,10 @@ public class Login2 extends JFrame {
             Password = raf.readLine().substring(10);
             
             if(user.equals(Username)& password.equals(Password)) {
-                JOptionPane.showMessageDialog(null, "Login Successful!");
-                DashboardView first = new DashboardView();
-				first.setVisible(true);
-				Login2.this.setVisible(false);
+                JOptionPane.showMessageDialog(null, "password matched");
             }
             else {
-                JOptionPane.showMessageDialog(null, "Wrong user/Password");
+                JOptionPane.showMessageDialog(null, "wrong user/Password");
             }
         } 
         catch (FileNotFoundException e) {
@@ -144,13 +141,13 @@ public class Login2 extends JFrame {
                 String forPass = raf.readLine().substring(10);
                 
                 if(user.equals(forUser) & password.equals(forPass)) {
-                    JOptionPane.showMessageDialog(null, "Login Successful!");
-                    DashboardView first = new DashboardView();
-					first.setVisible(true);
-					Login2.this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "password matched");
+                    DashboardView dv = new DashboardView();
+                    dv.setVisible(true);
+                    Login2.this.setVisible(false);
                     break;
                 }else if(i == (ln-2)){
-                    JOptionPane.showMessageDialog(null, "Incorrect username/password");
+                    JOptionPane.showMessageDialog(null, "incorrect username/password");
                     break;
                 }
                 for(int k = 1; k < 2; k++){
