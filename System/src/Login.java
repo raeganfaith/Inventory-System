@@ -47,7 +47,7 @@ public class Login extends JFrame {
 	  
 	//To insert images
 	private Image img_logo = new ImageIcon(Login.class.getResource("ress/logoh.png")).getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
-	private Image img_admin = new ImageIcon(Login.class.getResource("ress/admin.png")).getImage().getScaledInstance(130, 160, Image.SCALE_SMOOTH); 
+	private Image img_admin = new ImageIcon(Login.class.getResource("ress/admin.png")).getImage().getScaledInstance(135, 160, Image.SCALE_SMOOTH); 
 	private JPanel contentPane;
 	private JTextField userField;
 	private JPasswordField passwordField;
@@ -402,8 +402,7 @@ public class Login extends JFrame {
 				readFile();
 				countLines();
 				logic(userField.getText(), passwordField.getText());
-			}}
-	);
+			}});
 		JLabel lblUni = new JLabel("UNI");
 		lblUni.setForeground(new Color(245, 245, 245));
 		lblUni.setFont(new Font("Big John", Font.PLAIN, 57));
