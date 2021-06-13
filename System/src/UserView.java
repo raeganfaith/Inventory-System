@@ -150,6 +150,12 @@ public class UserView extends JFrame {
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("DELETE");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+				model.removeRow(i);
+			}
+		});
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnDelete.setBounds(94, 378, 100, 30);
 		contentPane.add(btnDelete);
@@ -174,6 +180,11 @@ public class UserView extends JFrame {
 				row[2] = info.getText();
 				row[3] = role.getText();
 				model.addRow(row);
+
+				name.setText("");
+				phone.setText("");
+				info.setText("");
+				role.setText("");
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
