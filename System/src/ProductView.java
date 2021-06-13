@@ -18,12 +18,12 @@ public class ProductView extends JFrame {
 	private Image img_logo = new ImageIcon(ProductView.class.getResource("ress/logoh.png")).getImage().getScaledInstance(70, 100, Image.SCALE_SMOOTH);
 	
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField ID;
+	private JTextField name;
+	private JTextField category;
+	private JTextField quantity;
+	private JTextField price;
+	private JTextField description;
 
 	/**
 	 * Launch the application.
@@ -89,74 +89,77 @@ public class ProductView extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("Product ID:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(10, 192, 87, 24);
+		lblNewLabel_3.setBounds(30, 193, 87, 24);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Name:");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1.setBounds(10, 226, 100, 24);
+		lblNewLabel_3_1.setBounds(30, 227, 100, 24);
 		contentPane.add(lblNewLabel_3_1);
 		
-		textField = new JTextField();
-		textField.setBounds(102, 197, 139, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		ID = new JTextField();
+		ID.setBounds(122, 198, 139, 19);
+		contentPane.add(ID);
+		ID.setColumns(10);
 		
 		JLabel lblNewLabel_3_1_1 = new JLabel("Category:");
 		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_1.setBounds(10, 259, 87, 24);
+		lblNewLabel_3_1_1.setBounds(30, 260, 87, 24);
 		contentPane.add(lblNewLabel_3_1_1);
 		
 		JLabel lblNewLabel_3_1_2 = new JLabel("Quantity:");
 		lblNewLabel_3_1_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_2.setBounds(10, 293, 87, 24);
+		lblNewLabel_3_1_2.setBounds(30, 294, 87, 24);
 		contentPane.add(lblNewLabel_3_1_2);
 		
 		JLabel lblNewLabel_3_1_3 = new JLabel("Price:");
 		lblNewLabel_3_1_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_3.setBounds(10, 327, 87, 24);
+		lblNewLabel_3_1_3.setBounds(30, 328, 87, 24);
 		contentPane.add(lblNewLabel_3_1_3);
 		
 		JLabel lblNewLabel_3_1_4 = new JLabel("Description:");
 		lblNewLabel_3_1_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_4.setBounds(10, 361, 87, 24);
+		lblNewLabel_3_1_4.setBounds(30, 362, 87, 24);
 		contentPane.add(lblNewLabel_3_1_4);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(102, 231, 139, 19);
-		contentPane.add(textField_1);
+		name = new JTextField();
+		name.setColumns(10);
+		name.setBounds(122, 232, 139, 19);
+		contentPane.add(name);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(102, 264, 139, 19);
-		contentPane.add(textField_2);
+		category = new JTextField();
+		category.setColumns(10);
+		category.setBounds(122, 265, 139, 19);
+		contentPane.add(category);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(102, 298, 139, 19);
-		contentPane.add(textField_3);
+		quantity = new JTextField();
+		quantity.setColumns(10);
+		quantity.setBounds(122, 299, 139, 19);
+		contentPane.add(quantity);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(102, 332, 139, 19);
-		contentPane.add(textField_4);
+		price = new JTextField();
+		price.setColumns(10);
+		price.setBounds(122, 333, 139, 19);
+		contentPane.add(price);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(102, 366, 139, 58);
-		contentPane.add(textField_5);
+		description = new JTextField();
+		description.setColumns(10);
+		description.setBounds(122, 367, 139, 58);
+		contentPane.add(description);
 		
 		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.setBounds(10, 441, 100, 30);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton.setBounds(30, 442, 100, 30);
 		contentPane.add(btnNewButton);
 		
 		JButton btnEdit = new JButton("EDIT");
-		btnEdit.setBounds(141, 441, 100, 30);
+		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnEdit.setBounds(161, 442, 100, 30);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("DELETE");
-		btnDelete.setBounds(74, 481, 100, 30);
+		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnDelete.setBounds(94, 482, 100, 30);
 		contentPane.add(btnDelete);
 	}
 
