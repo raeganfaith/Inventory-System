@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -29,12 +30,15 @@ public class CategoryView extends JFrame {
 	 * Create the frame.
 	 */
 	public CategoryView() {
+		setUndecorated(true); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 700, 550); //Frame size
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(51, 153, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
+		contentPane.setLayout(null);
 	}
 
 }
