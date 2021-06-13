@@ -34,30 +34,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.JLayeredPane;
 
 public class Login extends JFrame {
-	File f = new File("C:\\Users\\mynam\\Desktop\\UniStore");
-    int ln;
-    String Username,Password;
-	
-    void readFile(){
-        try {
-            FileReader fr = new FileReader(f+"\\logins.txt");
-            System.out.println("file exists!");
-        } catch (FileNotFoundException ex) {
-            try {
-                FileWriter fw = new FileWriter(f+"\\logins.txt");
-                System.out.println("File created");
-            } catch (IOException ex1) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex1);
-        }
-        }}
-    
+	  
 	//To insert images
 	private Image img_logo = new ImageIcon(Login.class.getResource("ress/logoh.png")).getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
-	//private Image img_cashier = new ImageIcon(Login.class.getResource("ress/cashier.png")).getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
-	private Image img_admin = new ImageIcon(Login.class.getResource("ress/admin.png")).getImage().getScaledInstance(130, 160, Image.SCALE_SMOOTH);
-	
+	private Image img_admin = new ImageIcon(Login.class.getResource("ress/admin.png")).getImage().getScaledInstance(130, 160, Image.SCALE_SMOOTH); 
 	private JPanel contentPane;
-	private PanelCashier PanelCashier;
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
 	private JLabel lblLoginMessage = new JLabel(""); 
@@ -291,14 +272,13 @@ public class Login extends JFrame {
 					first.setVisible(true);
 					Login.this.dispose();
 					//To inform the user the missing requirement
-				}else if(user.isEmpty()&&pass.isEmpty()) {
-					lblLoginMessage.setText("Please input all requirements!");
-				//If the registered user and password is different from the information being put for log in
-				}else {
-					lblLoginMessage.setText("Username and Password didn't match!");
-				}
-		}	
-					//Hovering buttons
+					}else if(txtUsername.equals("")&&txtPassword.equals("")) {
+						lblLoginMessage.setText("Please input all requirements!");
+						//If the registered user and password is different from the information being put for log in
+							}else {
+							lblLoginMessage.setText("Username and Password didn't match!");
+							}}
+			//Hovering buttons
 					@Override
 					public void mouseEntered(MouseEvent e) {
 						panelLoginBtn.setBackground(new Color(20, 130, 130));

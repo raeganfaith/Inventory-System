@@ -246,15 +246,34 @@ public class Login2 extends JFrame {
 		lblNewLabel_2.setBounds(351, 28, 91, 24);
 		panelMain.add(lblNewLabel_2);
 		
+		JLabel lblLoginMessage = new JLabel("");
+		lblLoginMessage.setForeground(new Color(204, 0, 0));
+		lblLoginMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+		lblLoginMessage.setBounds(272, 164, 250, 21);
+		panelMain.add(lblLoginMessage);
+		setLocationRelativeTo(null);
+		
 		JPanel panelLoginBtn = new JPanel();
 		panelLoginBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+				String user;
+				String pass;
+				
+				user = txtUsername.getText();
+				pass = txtPassword.getText();
+				if(user.equals("rae")&&user.equals("123") || user.equals("niel")&&user.equals("456")) {
+					JOptionPane.showMessageDialog(null,"Login Successful!");
 					DashboardView first = new DashboardView();
 					first.setVisible(true);
 					Login2.this.dispose();
-				}}
+					//To inform the user the missing requirement
+					}else if(txtUsername.equals("")&&txtPassword.equals("")) {
+						lblLoginMessage.setText("Please input all requirements!");
+						//If the registered user and password is different from the information being put for log in
+							}else {
+							lblLoginMessage.setText("Username and Password didn't match!");
+							}}
 					//Hovering buttons
 					@Override
 					public void mouseEntered(MouseEvent e) {
@@ -321,7 +340,8 @@ public class Login2 extends JFrame {
 		lblBack.setBounds(0, 10, 101, 27);
 		panelBack.add(lblBack);
 		lblBack.setFont(new Font("Tahoma", Font.BOLD, 12));
-		setLocationRelativeTo(null);
+		
+		
 	
 		
 	}
