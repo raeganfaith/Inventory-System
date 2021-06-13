@@ -19,7 +19,14 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -27,7 +34,23 @@ import javax.swing.border.LineBorder;
 import javax.swing.JLayeredPane;
 
 public class Login extends JFrame {
+	File f = new File("C:\\Users\\mynam\\Desktop\\UniStore");
+    int ln;
+    String Username,Password;
 	
+    void readFile(){
+        try {
+            FileReader fr = new FileReader(f+"\\logins.txt");
+            System.out.println("file exists!");
+        } catch (FileNotFoundException ex) {
+            try {
+                FileWriter fw = new FileWriter(f+"\\logins.txt");
+                System.out.println("File created");
+            } catch (IOException ex1) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex1);
+        }
+        }}
+    
 	//To insert images
 	private Image img_logo = new ImageIcon(Login.class.getResource("ress/logoh.png")).getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
 	//private Image img_cashier = new ImageIcon(Login.class.getResource("ress/cashier.png")).getImage().getScaledInstance(120, 170, Image.SCALE_SMOOTH);
@@ -37,11 +60,7 @@ public class Login extends JFrame {
 	private PanelCashier PanelCashier;
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
-	
-	//For inserting
-	public static ArrayList <String> email = new ArrayList();
-	public static ArrayList <String> username = new ArrayList();
-	public static ArrayList <String> password = new ArrayList();
+	private JLabel lblLoginMessage = new JLabel(""); 
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -250,15 +269,35 @@ public class Login extends JFrame {
 		lblNewLabel_2.setBounds(351, 28, 91, 24);
 		panelMain.add(lblNewLabel_2);
 		
+		JLabel lblLoginMessage = new JLabel("");
+		lblLoginMessage.setForeground(new Color(204, 0, 0));
+		lblLoginMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+		lblLoginMessage.setBounds(272, 170, 250, 21);
+		panelMain.add(lblLoginMessage);
+		setLocationRelativeTo(null);
+		
 		JPanel panelLoginBtn = new JPanel();
 		panelLoginBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+				String user;
+				String pass;
+				
+				user = txtUsername.getText();
+				pass = txtPassword.getText();
+				if(user.equals("rae")&&user.equals("123") || user.equals("niel")&&user.equals("456")) {
+					JOptionPane.showMessageDialog(null,"Login Successful!");
 					DashboardView first = new DashboardView();
 					first.setVisible(true);
 					Login.this.dispose();
-				}}
+					//To inform the user the missing requirement
+				}else if(user.isEmpty()&&pass.isEmpty()) {
+					lblLoginMessage.setText("Please input all requirements!");
+				//If the registered user and password is different from the information being put for log in
+				}else {
+					lblLoginMessage.setText("Username and Password didn't match!");
+				}
+		}	
 					//Hovering buttons
 					@Override
 					public void mouseEntered(MouseEvent e) {
@@ -293,6 +332,7 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					
 					LoginView first = new LoginView();
 					first.setVisible(true);
 					Login.this.dispose();
@@ -325,7 +365,8 @@ public class Login extends JFrame {
 		lblBack.setBounds(0, 10, 101, 27);
 		panelBackbtn.add(lblBack);
 		lblBack.setFont(new Font("Tahoma", Font.BOLD, 12));
-		setLocationRelativeTo(null);
+		
+		
 	
 		
 	}
