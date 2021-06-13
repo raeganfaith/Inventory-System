@@ -213,6 +213,14 @@ public class ProductView extends JFrame {
 		contentPane.add(CloseButton);
 		
 		JLabel lblNewLabel_4 = new JLabel("\u2190");
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DashboardView first = new DashboardView();
+				first.setVisible(true);
+				ProductView.this.setVisible(false);
+			}
+		});
 		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
 		lblNewLabel_4.setBounds(10, 0, 45, 38);
 		contentPane.add(lblNewLabel_4);

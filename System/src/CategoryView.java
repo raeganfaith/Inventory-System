@@ -30,10 +30,7 @@ public class CategoryView extends JFrame {
 	private JPanel contentPane;
 	private JTextField ID;
 	private JTextField name;
-	private JTextField category;
-	private JTextField quantity;
-	private JTextField price;
-	private JTextField description;
+	private JTextField info;
 	DefaultTableModel model;
 
 	private JTable table;
@@ -101,7 +98,7 @@ public class CategoryView extends JFrame {
 		lblNewLabel_2.setBounds(229, 152, 279, 24);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Product ID:");
+		JLabel lblNewLabel_3 = new JLabel("Category ID:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3.setBounds(30, 193, 87, 24);
 		contentPane.add(lblNewLabel_3);
@@ -116,64 +113,34 @@ public class CategoryView extends JFrame {
 		contentPane.add(ID);
 		ID.setColumns(10);
 		
-		JLabel lblNewLabel_3_1_1 = new JLabel("Category:");
+		JLabel lblNewLabel_3_1_1 = new JLabel("Info");
 		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_1_1.setBounds(30, 260, 87, 24);
 		contentPane.add(lblNewLabel_3_1_1);
-		
-		JLabel lblNewLabel_3_1_2 = new JLabel("Quantity:");
-		lblNewLabel_3_1_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_2.setBounds(30, 294, 87, 24);
-		contentPane.add(lblNewLabel_3_1_2);
-		
-		JLabel lblNewLabel_3_1_3 = new JLabel("Price:");
-		lblNewLabel_3_1_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_3.setBounds(30, 328, 87, 24);
-		contentPane.add(lblNewLabel_3_1_3);
-		
-		JLabel lblNewLabel_3_1_4 = new JLabel("Description:");
-		lblNewLabel_3_1_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_4.setBounds(30, 362, 87, 24);
-		contentPane.add(lblNewLabel_3_1_4);
 		
 		name = new JTextField();
 		name.setColumns(10);
 		name.setBounds(122, 232, 139, 19);
 		contentPane.add(name);
 		
-		category = new JTextField();
-		category.setColumns(10);
-		category.setBounds(122, 265, 139, 19);
-		contentPane.add(category);
-		
-		quantity = new JTextField();
-		quantity.setColumns(10);
-		quantity.setBounds(122, 299, 139, 19);
-		contentPane.add(quantity);
-		
-		price = new JTextField();
-		price.setColumns(10);
-		price.setBounds(122, 333, 139, 19);
-		contentPane.add(price);
-		
-		description = new JTextField();
-		description.setColumns(10);
-		description.setBounds(122, 367, 139, 58);
-		contentPane.add(description);
+		info = new JTextField();
+		info.setColumns(10);
+		info.setBounds(122, 265, 139, 19);
+		contentPane.add(info);
 		
 		JButton btnNewButton = new JButton("ADD");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(30, 442, 100, 30);
+		btnNewButton.setBounds(30, 320, 100, 30);
 		contentPane.add(btnNewButton);
 		
 		JButton btnEdit = new JButton("EDIT");
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(161, 442, 100, 30);
+		btnEdit.setBounds(161, 320, 100, 30);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("DELETE");
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnDelete.setBounds(94, 482, 100, 30);
+		btnDelete.setBounds(94, 360, 100, 30);
 		contentPane.add(btnDelete);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -182,7 +149,7 @@ public class CategoryView extends JFrame {
 		
 		table = new JTable();
 		model = new DefaultTableModel();
-		Object[] column = {"Product ID","Name","Quantity","Price","Description"};
+		Object[] column = {"Category ID","Name","Info"};
 		Object[] row = new Object [0];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
@@ -211,5 +178,18 @@ public class CategoryView extends JFrame {
 		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		CloseButton.setBounds(680, 0, 20, 20);
 		contentPane.add(CloseButton);
+		
+		JLabel lblNewLabel_4 = new JLabel("\u2190");
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DashboardView first = new DashboardView();
+				first.setVisible(true);
+				CategoryView.this.setVisible(false);
+			}
+		});
+		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
+		lblNewLabel_4.setBounds(0, 0, 45, 38);
+		contentPane.add(lblNewLabel_4);
 	}
 }
