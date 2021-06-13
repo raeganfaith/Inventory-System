@@ -141,7 +141,7 @@ public class DashboardView extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 					ProductView first = new ProductView();
 					first.setVisible(true);
-					DashboardView.this.dispose();
+					DashboardView.this.setVisible(false);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

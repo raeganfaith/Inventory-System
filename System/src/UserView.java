@@ -225,7 +225,7 @@ public class UserView extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				CloseButton.setForeground(Color.BLACK);
-			
+					
 			}
 		});
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -233,5 +233,18 @@ public class UserView extends JFrame {
 		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		CloseButton.setBounds(680, 0, 20, 20);
 		contentPane.add(CloseButton);
+		
+		JLabel lblNewLabel_4 = new JLabel("\u2190");
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DashboardView first = new DashboardView();
+				first.setVisible(true);
+				UserView.this.setVisible(false);
+			}
+		});
+		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
+		lblNewLabel_4.setBounds(10, 0, 45, 38);
+		contentPane.add(lblNewLabel_4);
 	}
 }
