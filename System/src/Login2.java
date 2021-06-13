@@ -24,6 +24,9 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.border.LineBorder;
 import javax.swing.JLayeredPane;
+import javax.swing.JCheckBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login2 extends JFrame {
 	
@@ -340,6 +343,20 @@ public class Login2 extends JFrame {
 		lblBack.setBounds(0, 10, 101, 27);
 		panelBack.add(lblBack);
 		lblBack.setFont(new Font("Tahoma", Font.BOLD, 12));
+		
+		JCheckBox ShowPass = new JCheckBox("Show Password");
+		ShowPass.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (ShowPass.isSelected()) {
+					txtPassword.setEchoChar((char)0);
+				}else {
+					txtPassword.setEchoChar('*');//Can be changed to bullet •
+				}}
+		});
+		ShowPass.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		ShowPass.setBackground(SystemColor.controlHighlight);
+		ShowPass.setBounds(439, 168, 152, 13);
+		panelMain.add(ShowPass);
 		
 		
 	
