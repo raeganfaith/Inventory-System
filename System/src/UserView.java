@@ -22,18 +22,18 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UserView extends JFrame {
 	
 	private Image img_logo = new ImageIcon(UserView.class.getResource("ress/logoh.png")).getImage().getScaledInstance(70, 100, Image.SCALE_SMOOTH);
 	
 	private JPanel contentPane;
-	private JTextField ID;
 	private JTextField name;
-	private JTextField category;
-	private JTextField quantity;
-	private JTextField price;
-	private JTextField description;
+	private JTextField phone;
+	private JTextField info;
+	private JTextField role;
 	DefaultTableModel model;
 
 	private JTable table;
@@ -102,79 +102,56 @@ public class UserView extends JFrame {
 		lblNewLabel_2.setBounds(242, 152, 251, 24);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Product ID:");
+		JLabel lblNewLabel_3 = new JLabel("Name:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3.setBounds(30, 193, 87, 24);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("Name:");
+		JLabel lblNewLabel_3_1 = new JLabel("Phone:");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_1.setBounds(30, 227, 100, 24);
 		contentPane.add(lblNewLabel_3_1);
 		
-		ID = new JTextField();
-		ID.setBounds(122, 198, 139, 19);
-		contentPane.add(ID);
-		ID.setColumns(10);
+		name = new JTextField();
+		name.setBounds(122, 198, 139, 19);
+		contentPane.add(name);
+		name.setColumns(10);
 		
-		JLabel lblNewLabel_3_1_1 = new JLabel("Category:");
+		JLabel lblNewLabel_3_1_1 = new JLabel("Info:");
 		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_1_1.setBounds(30, 260, 87, 24);
 		contentPane.add(lblNewLabel_3_1_1);
 		
-		JLabel lblNewLabel_3_1_2 = new JLabel("Quantity:");
+		JLabel lblNewLabel_3_1_2 = new JLabel("Role:");
 		lblNewLabel_3_1_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_1_2.setBounds(30, 294, 87, 24);
 		contentPane.add(lblNewLabel_3_1_2);
 		
-		JLabel lblNewLabel_3_1_3 = new JLabel("Price:");
-		lblNewLabel_3_1_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_3.setBounds(30, 328, 87, 24);
-		contentPane.add(lblNewLabel_3_1_3);
+		phone = new JTextField();
+		phone.setColumns(10);
+		phone.setBounds(122, 232, 139, 19);
+		contentPane.add(phone);
 		
-		JLabel lblNewLabel_3_1_4 = new JLabel("Description:");
-		lblNewLabel_3_1_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_4.setBounds(30, 362, 87, 24);
-		contentPane.add(lblNewLabel_3_1_4);
+		info = new JTextField();
+		info.setColumns(10);
+		info.setBounds(122, 265, 139, 19);
+		contentPane.add(info);
 		
-		name = new JTextField();
-		name.setColumns(10);
-		name.setBounds(122, 232, 139, 19);
-		contentPane.add(name);
+		role = new JTextField();
+		role.setColumns(10);
+		role.setBounds(122, 299, 139, 19);
+		contentPane.add(role);
 		
-		category = new JTextField();
-		category.setColumns(10);
-		category.setBounds(122, 265, 139, 19);
-		contentPane.add(category);
 		
-		quantity = new JTextField();
-		quantity.setColumns(10);
-		quantity.setBounds(122, 299, 139, 19);
-		contentPane.add(quantity);
-		
-		price = new JTextField();
-		price.setColumns(10);
-		price.setBounds(122, 333, 139, 19);
-		contentPane.add(price);
-		
-		description = new JTextField();
-		description.setColumns(10);
-		description.setBounds(122, 367, 139, 58);
-		contentPane.add(description);
-		
-		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(30, 442, 100, 30);
-		contentPane.add(btnNewButton);
 		
 		JButton btnEdit = new JButton("EDIT");
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(161, 442, 100, 30);
+		btnEdit.setBounds(161, 338, 100, 30);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("DELETE");
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnDelete.setBounds(94, 482, 100, 30);
+		btnDelete.setBounds(94, 378, 100, 30);
 		contentPane.add(btnDelete);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -183,11 +160,25 @@ public class UserView extends JFrame {
 		
 		table = new JTable();
 		model = new DefaultTableModel();
-		Object[] column = {"Product ID","Name","Quantity","Price","Description"};
-		Object[] row = new Object [0];
+		Object[] column = {"Name","Phone","Info","Role"};
+		final Object[] row = new Object[4];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("ADD");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				row[0] = name.getText();
+				row[1] = phone.getText();
+				row[2] = info.getText();
+				row[3] = role.getText();
+				model.addRow(row);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton.setBounds(30, 338, 100, 30);
+		contentPane.add(btnNewButton);
 		
 		JLabel CloseButton = new JLabel("X");
 		CloseButton.addMouseListener(new MouseAdapter() {
