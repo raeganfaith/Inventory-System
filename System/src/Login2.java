@@ -259,24 +259,23 @@ public class Login2 extends JFrame {
 		JPanel panelLoginBtn = new JPanel();
 		panelLoginBtn.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				String user;
-				String pass;
+			public void mouseClicked(MouseEvent e) {	
+				String user = txtUsername.getText();
+				String pass = txtPassword.getText();
 				
-				user = txtUsername.getText();
-				pass = txtPassword.getText();
-				if(user.equals("rae")&&user.equals("123") || user.equals("niel")&&user.equals("456")) {
-					JOptionPane.showMessageDialog(null,"Login Successful!");
-					DashboardView first = new DashboardView();
-					first.setVisible(true);
+				if(user.equals("asd") && pass.equals("asdf")) {
+					JOptionPane.showMessageDialog(null, "Login Successful!");
+					DashboardView dv = new DashboardView();
+					dv.setVisible(true);
 					Login2.this.dispose();
-					//To inform the user the missing requirement
-					}else if(txtUsername.equals("")&&txtPassword.equals("")) {
-						lblLoginMessage.setText("Please input all requirements!");
-						//If the registered user and password is different from the information being put for log in
-							}else {
-							lblLoginMessage.setText("Username and Password didn't match!");
-							}}
+				}
+				else if(user.equals("Cashier1") && pass.equals("cash123") || user.equals("Cashier2") && pass.equals("cash456")) {
+					JOptionPane.showMessageDialog(null, "Please input all requirements!");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Username and Password didn't match!");
+				}
+			}
 					//Hovering buttons
 					@Override
 					public void mouseEntered(MouseEvent e) {

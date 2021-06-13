@@ -34,6 +34,7 @@ public class UserView extends JFrame {
 	private JTextField phone;
 	private JTextField info;
 	private JTextField role;
+	private JTextField password;
 	DefaultTableModel model;
 
 	private JTable table;
@@ -152,6 +153,7 @@ public class UserView extends JFrame {
 				model.setValueAt(phone.getText(), i, 1);
 				model.setValueAt(info.getText(), i, 2);
 				model.setValueAt(role.getText(), i, 3);
+				model.setValueAt(password.getText(), i, 4);
 			}
 		});
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -182,6 +184,7 @@ public class UserView extends JFrame {
 				phone.setText(model.getValueAt(i, 0).toString());
 				info.setText(model.getValueAt(i, 0).toString());
 				role.setText(model.getValueAt(i, 0).toString());
+				password.setText(model.getValueAt(i, 0).toString());
 			}
 		});
 		model = new DefaultTableModel();
@@ -198,12 +201,14 @@ public class UserView extends JFrame {
 				row[1] = phone.getText();
 				row[2] = info.getText();
 				row[3] = role.getText();
+				row[4] = password.getText();
 				model.addRow(row);
 
 				name.setText("");
 				phone.setText("");
 				info.setText("");
 				role.setText("");
+				password.setText("");
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));

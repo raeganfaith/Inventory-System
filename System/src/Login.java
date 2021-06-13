@@ -263,22 +263,21 @@ public class Login extends JFrame {
 		JPanel panelLoginBtn = new JPanel();
 		panelLoginBtn.addMouseListener(new MouseAdapter() {
 			@Override
-public void mouseClicked(MouseEvent e) {
-				
+			public void mouseClicked(MouseEvent e) {	
 				String user = txtUsername.getText();
 				String pass = txtPassword.getText();
 				
-				if(user.equals("asd") && pass.equals("asdf")) {
-					JOptionPane.showMessageDialog(null, "okie yan");
+				if(user.equals("Admin1") && pass.equals("admin123") || user.equals("Admin2") && pass.equals("admin456")) {
+					JOptionPane.showMessageDialog(null, "Login Successful!");
 					DashboardView dv = new DashboardView();
 					dv.setVisible(true);
 					Login.this.dispose();
 				}
 				else if(user.equals("") || pass.equals("") || user.equals("Username") || pass.equals("Password")) {
-					JOptionPane.showMessageDialog(null, "wala laman");
+					JOptionPane.showMessageDialog(null, "Please input all requirements!");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "mali naman");
+					JOptionPane.showMessageDialog(null, "Username and Password didn't match!");
 				}
 			}
 	
