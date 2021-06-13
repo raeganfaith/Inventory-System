@@ -6,12 +6,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ProductView extends JFrame {
 	
@@ -24,7 +34,9 @@ public class ProductView extends JFrame {
 	private JTextField quantity;
 	private JTextField price;
 	private JTextField description;
+	DefaultTableModel model;
 
+	private JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -41,8 +53,10 @@ public class ProductView extends JFrame {
 		});
 	}
 
-
+	
+	
 	public ProductView() {
+		
 		setUndecorated(true); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 550); //Frame size
@@ -161,6 +175,41 @@ public class ProductView extends JFrame {
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnDelete.setBounds(94, 482, 100, 30);
 		contentPane.add(btnDelete);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(295, 186, 377, 339);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		model = new DefaultTableModel();
+		Object[] column = {"Product ID","Name","Quantity","Price","Description"};
+		Object[] row = new Object [0];
+		model.setColumnIdentifiers(column);
+		table.setModel(model);
+		scrollPane.setViewportView(table);
+		
+		JLabel CloseButton = new JLabel("X");
+		CloseButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
+					ProductView.this.dispose();
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				CloseButton.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				CloseButton.setForeground(Color.BLACK);
+			
+			}
+		});
+		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
+		CloseButton.setForeground(Color.BLACK);
+		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		CloseButton.setBounds(680, 0, 20, 20);
+		contentPane.add(CloseButton);
 	}
-
 }
