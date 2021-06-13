@@ -124,7 +124,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblProducts.setForeground(Color.GRAY);
+				lblProducts.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -145,7 +145,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblProducts.setForeground(Color.GRAY);
+				lblProducts.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -171,7 +171,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblcat.setForeground(Color.GRAY);
+				lblcat.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -192,7 +192,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblcat.setForeground(Color.GRAY);
+				lblcat.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -218,7 +218,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lbltransacthist.setForeground(Color.GRAY);
+				lbltransacthist.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -239,7 +239,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lbltransacthist.setForeground(Color.GRAY);
+				lbltransacthist.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -265,7 +265,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblUser.setForeground(Color.GRAY);
+				lblUser.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -287,7 +287,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblUser.setForeground(Color.GRAY);
+				lblUser.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -310,7 +310,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblexit.setForeground(Color.GRAY);
+				lblexit.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -334,7 +334,7 @@ public class DashboardView extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblexit.setForeground(Color.GRAY);
+				lblexit.setForeground(Color.WHITE);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
