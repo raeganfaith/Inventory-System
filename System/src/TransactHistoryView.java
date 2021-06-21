@@ -39,9 +39,8 @@ public class TransactHistoryView extends JFrame {
 	DefaultTableModel model;
 
 	private JTable table;
-	/**
-	 * Launch the application.
-	 */
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
