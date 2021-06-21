@@ -30,14 +30,16 @@ public class UserView extends JFrame {
 	private Image img_logo = new ImageIcon(UserView.class.getResource("ress/logoh.png")).getImage().getScaledInstance(70, 100, Image.SCALE_SMOOTH);
 	
 	private JPanel contentPane;
-	private JTextField name;
-	private JTextField phone;
-	private JTextField info;
+	private JTextField userid;
 	private JTextField role;
+	private JTextField username;
+	private JTextField pass;
+	private JTextField phone;
 	DefaultTableModel model;
 
 	private JTable table;
-	private JTextField password;
+
+	
 	/**
 	 * Launch the application.
 	 */
@@ -103,64 +105,59 @@ public class UserView extends JFrame {
 		lblNewLabel_2.setBounds(242, 152, 251, 24);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Name:");
+		JLabel lblNewLabel_3 = new JLabel("User ID:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3.setBounds(30, 193, 87, 24);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("Phone:");
+		JLabel lblNewLabel_3_1 = new JLabel("Role:");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_1.setBounds(30, 227, 100, 24);
 		contentPane.add(lblNewLabel_3_1);
 		
-		name = new JTextField();
-		name.setBounds(122, 198, 139, 19);
-		contentPane.add(name);
-		name.setColumns(10);
+		userid = new JTextField();
+		userid.setBounds(122, 198, 139, 19);
+		contentPane.add(userid);
+		userid.setColumns(10);
 		
-		JLabel lblNewLabel_3_1_1 = new JLabel("Info:");
+		JLabel lblNewLabel_3_1_1 = new JLabel("Username:");
 		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_1_1.setBounds(30, 260, 87, 24);
 		contentPane.add(lblNewLabel_3_1_1);
 		
-		JLabel lblNewLabel_3_1_2 = new JLabel("Role:");
+		JLabel lblNewLabel_3_1_2 = new JLabel("Password:");
 		lblNewLabel_3_1_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_1_2.setBounds(30, 294, 87, 24);
 		contentPane.add(lblNewLabel_3_1_2);
 		
-		phone = new JTextField();
-		phone.setColumns(10);
-		phone.setBounds(122, 232, 139, 19);
-		contentPane.add(phone);
-		
-		info = new JTextField();
-		info.setColumns(10);
-		info.setBounds(122, 265, 139, 19);
-		contentPane.add(info);
-		
 		role = new JTextField();
 		role.setColumns(10);
-		role.setBounds(122, 299, 139, 19);
+		role.setBounds(122, 232, 139, 19);
 		contentPane.add(role);
 		
-		password = new JTextField();
-		password.setColumns(10);
-		password.setBounds(122, 232, 139, 19);
-		contentPane.add(password);
+		username = new JTextField();
+		username.setColumns(10);
+		username.setBounds(122, 265, 139, 19);
+		contentPane.add(username);
 		
-		JButton btnEdit = new JButton("UPDATE");
+		pass = new JTextField();
+		pass.setColumns(10);
+		pass.setBounds(122, 299, 139, 19);
+		contentPane.add(pass);
+		
+		JButton btnEdit = new JButton("EDIT");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = table .getSelectedRow();
-				model.setValueAt(name.getText(), i, 0);
-				model.setValueAt(phone.getText(), i, 1);
-				model.setValueAt(info.getText(), i, 2);
-				model.setValueAt(role.getText(), i, 3);
-				model.setValueAt(password.getText(), i, 4);
+				model.setValueAt(userid.getText(), i, 0);
+				model.setValueAt(role.getText(), i, 1);
+				model.setValueAt(username.getText(), i, 2);
+				model.setValueAt(pass.getText(), i, 3);
+				model.setValueAt(phone.getText(), i, 4);
 			}
 		});
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(161, 361, 100, 30);
+		btnEdit.setBounds(30, 416, 231, 30);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("DELETE");
@@ -171,11 +168,11 @@ public class UserView extends JFrame {
 			}
 		});
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnDelete.setBounds(94, 401, 100, 30);
+		btnDelete.setBounds(30, 496, 231, 30);
 		contentPane.add(btnDelete);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(295, 186, 377, 339);
+		scrollPane.setBounds(295, 186, 377, 300);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -183,42 +180,74 @@ public class UserView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int i = table.getSelectedRow();
-				name.setText(model.getValueAt(i, 0).toString());
-				phone.setText(model.getValueAt(i, 0).toString());
-				info.setText(model.getValueAt(i, 0).toString());
+				userid.setText(model.getValueAt(i, 0).toString());
 				role.setText(model.getValueAt(i, 0).toString());
-				password.setText(model.getValueAt(i, 0).toString());
+				username.setText(model.getValueAt(i, 0).toString());
+				pass.setText(model.getValueAt(i, 0).toString());
+				phone.setText(model.getValueAt(i, 0).toString());
 			}
 		});
 		model = new DefaultTableModel();
-		Object[] column = {"Name","Phone","Info","Role","password"};
+		Object[] column = {"User ID","Role","UserName","Password","Phone"};
 		final Object[] row = new Object[5];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				row[0] = name.getText();
-				row[1] = phone.getText();
-				row[2] = info.getText();
-				row[3] = role.getText();
-				row[4] = password.getText();
+				row[0] = userid.getText();
+				row[1] = role.getText();
+				row[2] = username.getText();
+				row[3] = pass.getText();
+				row[4] = phone.getText();
 				model.addRow(row);
 
-				name.setText("");
-				phone.setText("");
-				info.setText("");
+				userid.setText("");
 				role.setText("");
-				password.setText("");
+				username.setText("");
+				pass.setText("");
+				phone.setText("");
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(30, 361, 100, 30);
-		contentPane.add(btnNewButton);
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAdd.setBounds(30, 376, 231, 30);
+		contentPane.add(btnAdd);
 		
-		JLabel CloseButton = new JLabel("X");
+		JLabel btnback = new JLabel("  BACK");
+		btnback.setForeground(Color.BLACK);
+		btnback.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DashboardView first = new DashboardView();
+				first.setVisible(true);
+				UserView.this.setVisible(false);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnback.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnback.setForeground(Color.BLACK);
+			}
+		});
+		btnback.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		btnback.setBounds(0, 0, 71, 41);
+		contentPane.add(btnback);
+		
+		JLabel phonenum = new JLabel("Phone:");
+		phonenum.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		phonenum.setBounds(30, 328, 87, 24);
+		contentPane.add(phonenum);
+		
+		phone = new JTextField();
+		phone.setColumns(10);
+		phone.setBounds(122, 333, 139, 19);
+		contentPane.add(phone);
+		
+		JLabel CloseButton = new JLabel("CLOSE");
 		CloseButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -233,36 +262,31 @@ public class UserView extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				CloseButton.setForeground(Color.BLACK);
-					
 			}
 		});
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		CloseButton.setBounds(680, 0, 20, 20);
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setBounds(620, 0, 80, 41);
 		contentPane.add(CloseButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("\u2190");
-		lblNewLabel_4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				DashboardView first = new DashboardView();
-				first.setVisible(true);
-				UserView.this.setVisible(false);
+		JButton btnsClear = new JButton("CLEAR");
+		btnsClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				userid.setText("");
+				role.setText("");
+				username.setText("");
+				pass.setText("");
+				phone.setText("");
 			}
 		});
-		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
-		lblNewLabel_4.setBounds(10, 0, 45, 38);
-		contentPane.add(lblNewLabel_4);
+		btnsClear.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnsClear.setBounds(30, 456, 231, 30);
+		contentPane.add(btnsClear);
 		
-		JLabel pass = new JLabel("Password:");
-		pass.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		pass.setBounds(30, 328, 87, 24);
-		contentPane.add(pass);
-		
-		password = new JTextField();
-		password.setColumns(10);
-		password.setBounds(122, 333, 139, 19);
-		contentPane.add(password);
+		JButton btnImport = new JButton("IMPORT");
+		btnImport.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnImport.setBounds(295, 496, 377, 30);
+		contentPane.add(btnImport);
 	}
 }

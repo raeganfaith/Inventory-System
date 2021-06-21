@@ -141,7 +141,7 @@ public class Login2 extends JFrame {
                 String forPass = raf.readLine().substring(10);
                 
                 if(user.equals(forUser) & password.equals(forPass)) {
-                    JOptionPane.showMessageDialog(null, "password matched");
+                    JOptionPane.showMessageDialog(null, "Login Successfully!");
                     DashboardView dv = new DashboardView();
                     dv.setVisible(true);
                     Login2.this.setVisible(false);
@@ -188,32 +188,6 @@ public class Login2 extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
-		
-		JLabel CloseButton = new JLabel("X");
-		CloseButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login2.this.dispose();
-				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				CloseButton.setForeground(Color.RED);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				CloseButton.setForeground(Color.BLACK);
-			
-			}
-		});
-		CloseButton.setForeground(new Color(0, 0, 0));
-		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
-		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		CloseButton.setBounds(680, 0, 20, 20);
-		contentPane.add(CloseButton);
 		
 		JLabel lblIconLogo = new JLabel("");
 		lblIconLogo.setBounds(124, 2, 148, 186);
@@ -416,6 +390,13 @@ public class Login2 extends JFrame {
 		lblNewLabel_1.setFont(new Font("Big John", Font.PLAIN, 21));
 		lblNewLabel_1.setBounds(282, 112, 242, 48);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel CloseButton = new JLabel("CLOSE");
+		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
+		CloseButton.setForeground(Color.BLACK);
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setBounds(620, 2, 80, 41);
+		contentPane.add(CloseButton);
 
 	}}
 

@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CategoryView extends JFrame {
 	
@@ -109,7 +111,7 @@ public class CategoryView extends JFrame {
 		contentPane.add(lblNewLabel_3_1);
 		
 		ID = new JTextField();
-		ID.setBounds(122, 198, 139, 19);
+		ID.setBounds(122, 198, 139, 24);
 		contentPane.add(ID);
 		ID.setColumns(10);
 		
@@ -120,42 +122,78 @@ public class CategoryView extends JFrame {
 		
 		name = new JTextField();
 		name.setColumns(10);
-		name.setBounds(122, 232, 139, 19);
+		name.setBounds(122, 232, 139, 24);
 		contentPane.add(name);
 		
 		info = new JTextField();
 		info.setColumns(10);
-		info.setBounds(122, 265, 139, 19);
+		info.setBounds(122, 265, 139, 89);
 		contentPane.add(info);
+		//-------------------TABLE CONTROLLER------------------//
+		JScrollPane scrollPane = new JScrollPane(); 
+		scrollPane.setBounds(295, 186, 377, 301); 
+		contentPane.add(scrollPane); 
 		
-		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(30, 320, 100, 30);
-		contentPane.add(btnNewButton);
-		
-		JButton btnEdit = new JButton("EDIT");
-		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(161, 320, 100, 30);
-		contentPane.add(btnEdit);
-		
-		JButton btnDelete = new JButton("DELETE");
-		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnDelete.setBounds(94, 360, 100, 30);
-		contentPane.add(btnDelete);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(295, 186, 377, 339);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
+		table = new JTable(); 
+		table.addMouseListener(new MouseAdapter() { 
+			@Override 
+			public void mouseClicked(MouseEvent e) { 
+				int i = table.getSelectedRow(); 
+				ID.setText(model.getValueAt(i, 0).toString()); 
+				name.setText(model.getValueAt(i, 0).toString()); 
+				info.setText(model.getValueAt(i, 0).toString()); 
+			}
+		});
 		model = new DefaultTableModel();
 		Object[] column = {"Category ID","Name","Info"};
-		Object[] row = new Object [0];
+		final Object[] row = new Object[3];
+		//Object[] row = new Object [0];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
-		JLabel CloseButton = new JLabel("X");
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				row[0] = ID.getText();
+				row[1] = name.getText();
+				row[2] = info.getText();
+				model.addRow(row);
+
+				ID.setText("");
+				name.setText("");
+				info.setText("");
+			}
+		});
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAdd.setBounds(30, 377, 231, 30);
+		contentPane.add(btnAdd);
+		//----------------EDIT------------
+		JButton btnEdit = new JButton("EDIT");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table .getSelectedRow();
+				model.setValueAt(ID.getText(), i, 0);
+				model.setValueAt(name.getText(), i, 1);
+				model.setValueAt(info.getText(), i, 2);
+			}
+		});
+		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnEdit.setBounds(30, 417, 231, 30);
+		contentPane.add(btnEdit);
+		
+		JButton btnDelete = new JButton("DELETE");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+				model.removeRow(i);
+			}
+		});
+		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnDelete.setBounds(30, 457, 231, 30);
+		contentPane.add(btnDelete);
+		
+		JLabel CloseButton = new JLabel("CLOSE");
 		CloseButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -170,26 +208,51 @@ public class CategoryView extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				CloseButton.setForeground(Color.BLACK);
-			
 			}
 		});
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		CloseButton.setBounds(680, 0, 20, 20);
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setBounds(620, 0, 80, 41);
 		contentPane.add(CloseButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("\u2190");
-		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+		JLabel btnback = new JLabel("  BACK");
+		btnback.setForeground(Color.BLACK);
+		btnback.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DashboardView first = new DashboardView();
 				first.setVisible(true);
 				CategoryView.this.setVisible(false);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnback.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnback.setForeground(Color.BLACK);
+			}
 		});
-		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
-		lblNewLabel_4.setBounds(0, 0, 45, 38);
-		contentPane.add(lblNewLabel_4);
+		btnback.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		btnback.setBounds(0, 0, 71, 41);
+		contentPane.add(btnback);
+		
+		JButton btnClear = new JButton("CLEAR");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ID.setText("");
+				name.setText("");
+				info.setText("");
+			}
+		});
+		btnClear.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnClear.setBounds(30, 497, 231, 30);
+		contentPane.add(btnClear);
+		
+		JButton btnImport = new JButton("IMPORT");
+		btnImport.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnImport.setBounds(295, 497, 377, 30);
+		contentPane.add(btnImport);
 	}
 }

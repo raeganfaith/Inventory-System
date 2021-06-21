@@ -202,28 +202,13 @@ public class LoginView extends JFrame {
 		panelAdmin.setBounds(421, 57, 130, 171);
 		panelMainLog.add(panelAdmin);
 		
-		JLabel CloseButton = new JLabel("X");
-		CloseButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					LoginView.this.dispose();
-				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				CloseButton.setForeground(Color.RED);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				CloseButton.setForeground(Color.BLACK);
-			}
-		});
+		JLabel CloseButton = new JLabel("CLOSE");
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		CloseButton.setBounds(680, 0, 20, 20);
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setBounds(620, 0, 80, 41);
 		contentPane.add(CloseButton);
 		setLocationRelativeTo(null);
 	
-	}}
+	}	
+}

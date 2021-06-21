@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TransactHistoryView extends JFrame {
 	
@@ -52,8 +54,6 @@ public class TransactHistoryView extends JFrame {
 			}
 		});
 	}
-
-	
 	
 	public TransactHistoryView() {
 		
@@ -158,37 +158,85 @@ public class TransactHistoryView extends JFrame {
 		
 		quantity = new JTextField();
 		quantity.setColumns(10);
-		quantity.setBounds(122, 367, 139, 58);
+		quantity.setBounds(122, 367, 139, 24);
 		contentPane.add(quantity);
 		
-		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(30, 442, 100, 30);
-		contentPane.add(btnNewButton);
-		
-		JButton btnEdit = new JButton("EDIT");
-		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(161, 442, 100, 30);
-		contentPane.add(btnEdit);
-		
-		JButton btnDelete = new JButton("DELETE");
-		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnDelete.setBounds(94, 482, 100, 30);
-		contentPane.add(btnDelete);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(284, 186, 393, 339);
+		scrollPane.setBounds(284, 186, 393, 295);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = table.getSelectedRow();
+				ordernum.setText(model.getValueAt(i, 0).toString());
+				date.setText(model.getValueAt(i, 0).toString());
+				amount.setText(model.getValueAt(i, 0).toString());
+				id .setText(model.getValueAt(i, 0).toString());
+				cat.setText(model.getValueAt(i, 0).toString());
+				quantity.setText(model.getValueAt(i, 0).toString());
+			}
+		});
 		model = new DefaultTableModel();
 		Object[] column = {"Order Number","Date","Amount","Product ID","Category","Quantity"};
-		Object[] row = new Object [0];
+		final Object[] row = new Object[6];
+		//Object[] row = new Object [0];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
-		JLabel CloseButton = new JLabel("X");
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				row[0] = ordernum.getText();
+				row[1] = date.getText();
+				row[2] = amount.getText();
+				row[3] = id.getText();
+				row[4] = cat.getText();
+				row[5] = quantity.getText();
+				model.addRow(row);
+
+				ordernum.setText("");
+				date.setText("");
+				amount.setText("");
+				id.setText("");
+				cat.setText("");
+				quantity.setText("");
+			}
+		});
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAdd.setBounds(30, 411, 231, 30);
+		contentPane.add(btnAdd);
+		
+		JButton btnEdit = new JButton("EDIT");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table .getSelectedRow();
+				model.setValueAt(ordernum.getText(), i, 0);
+				model.setValueAt(date.getText(), i, 1);
+				model.setValueAt(amount.getText(), i, 2);
+				model.setValueAt(id.getText(), i, 3);
+				model.setValueAt(cat.getText(), i, 4);
+				model.setValueAt(quantity.getText(), i, 5);
+			}
+		});
+		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnEdit.setBounds(30, 451, 231, 30);
+		contentPane.add(btnEdit);
+		
+		JButton btnDelete = new JButton("DELETE");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+				model.removeRow(i);
+			}
+		});
+		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnDelete.setBounds(30, 491, 87, 30);
+		contentPane.add(btnDelete);
+			
+		JLabel CloseButton = new JLabel("CLOSE");
 		CloseButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -203,26 +251,54 @@ public class TransactHistoryView extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				CloseButton.setForeground(Color.BLACK);
-			
 			}
 		});
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		CloseButton.setBounds(680, 0, 20, 20);
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setBounds(620, 0, 80, 41);
 		contentPane.add(CloseButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("\u2190");
-		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+		JLabel btnback = new JLabel("  BACK");
+		btnback.setForeground(Color.BLACK);
+		btnback.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DashboardView first = new DashboardView();
 				first.setVisible(true);
 				TransactHistoryView.this.setVisible(false);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnback.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnback.setForeground(Color.BLACK);
+			}
 		});
-		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
-		lblNewLabel_4.setBounds(0, 0, 45, 38);
-		contentPane.add(lblNewLabel_4);
+		btnback.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		btnback.setBounds(0, 0, 71, 41);
+		contentPane.add(btnback);
+		
+		JButton btnImport = new JButton("IMPORT");
+		btnImport.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnImport.setBounds(284, 491, 393, 30);
+		contentPane.add(btnImport);
+		
+		JButton BtnClear = new JButton("CLEAR");
+		BtnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ordernum.setText("");
+				date.setText("");
+				amount.setText("");
+				id.setText("");
+				cat.setText("");
+				quantity.setText("");
+			}
+		});
+		BtnClear.setFont(new Font("Tahoma", Font.BOLD, 12));
+		BtnClear.setBounds(168, 491, 93, 30);
+		contentPane.add(BtnClear);
 	}
 }

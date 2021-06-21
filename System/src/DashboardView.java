@@ -90,7 +90,7 @@ public class DashboardView extends JFrame {
 		panel.setBounds(0, 149, 700, 10);
 		contentPane.add(panel);
 		
-		JLabel CloseButton = new JLabel("X");
+		JLabel CloseButton = new JLabel("CLOSE");
 		CloseButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -110,8 +110,8 @@ public class DashboardView extends JFrame {
 		});
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		CloseButton.setBounds(680, 0, 20, 20);
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setBounds(620, 0, 80, 41);
 		contentPane.add(CloseButton);
 		
 		JLabel lblProducts = new JLabel(" PRODUCTS");

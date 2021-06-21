@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProductView extends JFrame {
 	
@@ -103,92 +105,129 @@ public class ProductView extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("Product ID:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(30, 193, 87, 24);
+		lblNewLabel_3.setBounds(31, 186, 87, 24);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Name:");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1.setBounds(30, 227, 100, 24);
+		lblNewLabel_3_1.setBounds(31, 220, 100, 24);
 		contentPane.add(lblNewLabel_3_1);
 		
 		ID = new JTextField();
-		ID.setBounds(122, 198, 139, 19);
+		ID.setBounds(123, 191, 139, 19);
 		contentPane.add(ID);
 		ID.setColumns(10);
 		
 		JLabel lblNewLabel_3_1_1 = new JLabel("Category:");
 		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_1.setBounds(30, 260, 87, 24);
+		lblNewLabel_3_1_1.setBounds(31, 253, 87, 24);
 		contentPane.add(lblNewLabel_3_1_1);
 		
 		JLabel lblNewLabel_3_1_2 = new JLabel("Quantity:");
 		lblNewLabel_3_1_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_2.setBounds(30, 294, 87, 24);
+		lblNewLabel_3_1_2.setBounds(31, 287, 87, 24);
 		contentPane.add(lblNewLabel_3_1_2);
 		
 		JLabel lblNewLabel_3_1_3 = new JLabel("Price:");
 		lblNewLabel_3_1_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_3.setBounds(30, 328, 87, 24);
+		lblNewLabel_3_1_3.setBounds(31, 321, 87, 24);
 		contentPane.add(lblNewLabel_3_1_3);
 		
 		JLabel lblNewLabel_3_1_4 = new JLabel("Description:");
 		lblNewLabel_3_1_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_4.setBounds(30, 362, 87, 24);
+		lblNewLabel_3_1_4.setBounds(31, 355, 87, 24);
 		contentPane.add(lblNewLabel_3_1_4);
 		
 		name = new JTextField();
 		name.setColumns(10);
-		name.setBounds(122, 232, 139, 19);
+		name.setBounds(123, 225, 139, 19);
 		contentPane.add(name);
 		
 		category = new JTextField();
 		category.setColumns(10);
-		category.setBounds(122, 265, 139, 19);
+		category.setBounds(123, 258, 139, 19);
 		contentPane.add(category);
 		
 		quantity = new JTextField();
 		quantity.setColumns(10);
-		quantity.setBounds(122, 299, 139, 19);
+		quantity.setBounds(123, 292, 139, 19);
 		contentPane.add(quantity);
 		
 		price = new JTextField();
 		price.setColumns(10);
-		price.setBounds(122, 333, 139, 19);
+		price.setBounds(123, 326, 139, 19);
 		contentPane.add(price);
 		
 		description = new JTextField();
 		description.setColumns(10);
-		description.setBounds(122, 367, 139, 58);
+		description.setBounds(123, 360, 139, 38);
 		contentPane.add(description);
 		
-		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(30, 442, 100, 30);
-		contentPane.add(btnNewButton);
-		
-		JButton btnEdit = new JButton("EDIT");
-		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(161, 442, 100, 30);
-		contentPane.add(btnEdit);
-		
-		JButton btnDelete = new JButton("DELETE");
-		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnDelete.setBounds(94, 482, 100, 30);
-		contentPane.add(btnDelete);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(295, 186, 377, 339);
+		scrollPane.setBounds(295, 186, 377, 292);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		model = new DefaultTableModel();
-		Object[] column = {"Product ID","Name","Quantity","Price","Description"};
-		Object[] row = new Object [0];
+		Object[] column = {"Product ID","Name","Category","Quantity","Price","Description"};
+		final Object[] row = new Object[6];
+		//Object[] row = new Object [0];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
-		JLabel CloseButton = new JLabel("X");
+		JButton btnNewButton = new JButton("ADD");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				row[0] = ID.getText();
+				row[1] = name.getText();
+				row[2] = category.getText();
+				row[3] = quantity.getText();
+				row[4] = price.getText();
+				row[5] = description.getText();
+				model.addRow(row);
+
+				ID.setText("");
+				name.setText("");
+				category.setText("");
+				quantity.setText("");
+				price.setText("");
+				description.setText("");
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton.setBounds(31, 408, 231, 30);
+		contentPane.add(btnNewButton);
+		
+		JButton btnEdit = new JButton("EDIT");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table .getSelectedRow();
+				model.setValueAt(ID.getText(), i, 0);
+				model.setValueAt(name.getText(), i, 1);
+				model.setValueAt(category.getText(), i, 2);
+				model.setValueAt(quantity.getText(), i, 3);
+				model.setValueAt(price.getText(), i, 4);
+				model.setValueAt(description.getText(), i, 5);
+			}
+		});
+		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnEdit.setBounds(31, 448, 231, 30);
+		contentPane.add(btnEdit);
+		
+		JButton btnDelete = new JButton("DELETE");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+				model.removeRow(i);
+			}
+		});
+		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnDelete.setBounds(31, 488, 100, 30);
+		contentPane.add(btnDelete);
+		
+		//----------CLOSE BUTTON------------	
+		JLabel CloseButton = new JLabel("CLOSE");
 		CloseButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -203,26 +242,55 @@ public class ProductView extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				CloseButton.setForeground(Color.BLACK);
-			
 			}
 		});
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		CloseButton.setBounds(680, 0, 20, 20);
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setBounds(620, 0, 80, 41);
 		contentPane.add(CloseButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("\u2190");
-		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+		JLabel btnback = new JLabel("  BACK");
+		btnback.setForeground(Color.BLACK);
+		btnback.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DashboardView first = new DashboardView();
 				first.setVisible(true);
 				ProductView.this.setVisible(false);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnback.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnback.setForeground(Color.BLACK);
+			}
 		});
-		lblNewLabel_4.setFont(new Font("Arial Black", Font.PLAIN, 40));
-		lblNewLabel_4.setBounds(10, 0, 45, 38);
-		contentPane.add(lblNewLabel_4);
+		
+		btnback.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		btnback.setBounds(0, 0, 71, 41);
+		contentPane.add(btnback);
+		
+		JButton btnimport = new JButton("IMPORT ");
+		btnimport.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnimport.setBounds(295, 488, 377, 30);
+		contentPane.add(btnimport);
+		
+		JButton btnClear = new JButton("CLEAR");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ID.setText("");
+				name.setText("");
+				category.setText("");
+				quantity.setText("");
+				price.setText("");
+				description.setText("");
+			}
+		});
+		btnClear.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnClear.setBounds(161, 488, 100, 30);
+		contentPane.add(btnClear);
 	}
 }

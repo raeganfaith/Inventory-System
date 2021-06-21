@@ -43,7 +43,6 @@ public class Login extends JFrame {
 	File f = new File("C:\\Users\\mynam\\Desktop\\system");
     int ln;
     String Username, Password;
-
 	  
 	//To insert images
 	private Image img_logo = new ImageIcon(Login.class.getResource("ress/logoh.png")).getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
@@ -65,7 +64,6 @@ public class Login extends JFrame {
 			}
 		});
 	}
-
 	void createFolder(){
         if(!f.exists()){
             f.mkdirs();
@@ -142,7 +140,7 @@ public class Login extends JFrame {
                 String forPass = raf.readLine().substring(10);
                 
                 if(user.equals(forUser) & password.equals(forPass)) {
-                    JOptionPane.showMessageDialog(null, "Login Successful!");
+                    JOptionPane.showMessageDialog(null, "Login Successfully!");
                     DashboardView dv = new DashboardView();
                     dv.setVisible(true);
                     Login.this.setVisible(false);
@@ -163,8 +161,7 @@ public class Login extends JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
-    
+       
     void countLines(){
         try {
             ln = 0;
@@ -191,30 +188,6 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel CloseButton = new JLabel("X");
-		CloseButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
-					Login.this.dispose();
-				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				CloseButton.setForeground(Color.RED);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				CloseButton.setForeground(Color.BLACK);
-			
-			}
-		});
-		CloseButton.setForeground(new Color(0, 0, 0));
-		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
-		CloseButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		CloseButton.setBounds(680, 0, 20, 20);
-		contentPane.add(CloseButton);
-		
 		JLabel lblIconLogo = new JLabel("");
 		lblIconLogo.setBounds(124, 2, 148, 186);
 		contentPane.add(lblIconLogo);
@@ -231,8 +204,7 @@ public class Login extends JFrame {
 		panelMain.setBounds(0, 191, 700, 259);
 		contentPane.add(panelMain);
 		panelMain.setLayout(null);
-		
-		
+	
 		JLabel lbladmn = new JLabel("ADMIN");
 		lbladmn.addMouseListener(new MouseAdapter() {
 				@Override
@@ -416,6 +388,13 @@ public class Login extends JFrame {
 		lblNewLabel_1.setFont(new Font("Big John", Font.PLAIN, 21));
 		lblNewLabel_1.setBounds(282, 112, 242, 48);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel CloseButton = new JLabel("CLOSE");
+		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
+		CloseButton.setForeground(Color.BLACK);
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setBounds(620, 2, 80, 41);
+		contentPane.add(CloseButton);
 		
 
 	}}
