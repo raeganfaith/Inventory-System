@@ -107,7 +107,7 @@ public class TransactHistoryView extends JFrame {
 			}
 		});
 		model = new DefaultTableModel();
-		Object[] column = {"Product ID","Name","Category","Stock","Price","Description"};
+		Object[] column = {"Product ID","Name","Category","Stock","Price","Description"};//add date
 		final Object[] row = new Object[6];
 		//Object[] row = new Object [0];
 		model.setColumnIdentifiers(column);
