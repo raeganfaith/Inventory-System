@@ -41,6 +41,7 @@ public class CategoryView extends JFrame {
 	private JTextField name;
 	private JTextField info;
 	DefaultTableModel model;
+	
 
 	private JTable table;
 	/**

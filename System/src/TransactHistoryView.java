@@ -22,6 +22,10 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -95,7 +99,7 @@ public class TransactHistoryView extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 186, 655, 295);
+		scrollPane.setBounds(10, 186, 680, 295);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -159,14 +163,34 @@ public class TransactHistoryView extends JFrame {
 		btnback.setBounds(0, 0, 71, 41);
 		contentPane.add(btnback);
 		
-		JButton btnImport = new JButton("IMPORT");
+		JButton btnImport = new JButton("SAVE");
+		btnImport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,"Successfully Saved!");
+				String filePath = "C:\\Users\\mynam\\Desktop\\PRODUCT\\TRANSACTHISTORY.txt";
+				File file = new File(filePath);
+				try {
+					FileWriter fw = new FileWriter(file);
+					BufferedWriter bw = new BufferedWriter(fw);
+					
+					for(int i = 0; i < model.getRowCount(); i++) {
+						for(int j = 0; j < model.getColumnCount(); j++) { //row
+							bw.write(model.getValueAt(i, j).toString()+" "); //column
+						}
+						bw.newLine();
+					}
+					
+					bw.close();
+					fw.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnImport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnImport.setBounds(377, 491, 296, 30);
+		btnImport.setBounds(213, 491, 287, 30);
 		contentPane.add(btnImport);
-		
-		JButton btnExport = new JButton("EXPORT");
-		btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnExport.setBounds(22, 491, 296, 30);
-		contentPane.add(btnExport);
 	}
 }
