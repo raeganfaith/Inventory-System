@@ -32,15 +32,14 @@ import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class UserView extends JFrame {
-	
+public class UserView extends JFrame {	
 	private Image img_logo = new ImageIcon(UserView.class.getResource("ress/logoh.png")).getImage().getScaledInstance(70, 100, Image.SCALE_SMOOTH);
 	
 	private JPanel contentPane;
 	private JTextField userid;
 	private JTextField role;
-	private JTextField username;
-	private JTextField pass;
+	private JTextField user;
+	private JTextField password;
 	private JTextField phone;
 	DefaultTableModel model;
 
@@ -142,15 +141,15 @@ public class UserView extends JFrame {
 		role.setBounds(122, 232, 139, 19);
 		contentPane.add(role);
 		
-		username = new JTextField();
-		username.setColumns(10);
-		username.setBounds(122, 265, 139, 19);
-		contentPane.add(username);
+		user = new JTextField();
+		user.setColumns(10);
+		user.setBounds(122, 265, 139, 19);
+		contentPane.add(user);
 		
-		pass = new JTextField();
-		pass.setColumns(10);
-		pass.setBounds(122, 299, 139, 19);
-		contentPane.add(pass);
+		password = new JTextField();
+		password.setColumns(10);
+		password.setBounds(122, 299, 139, 19);
+		contentPane.add(password);
 		
 		JButton btnEdit = new JButton("EDIT");
 		btnEdit.addActionListener(new ActionListener() {
@@ -158,8 +157,8 @@ public class UserView extends JFrame {
 				int i = table .getSelectedRow();
 				model.setValueAt(userid.getText(), i, 0);
 				model.setValueAt(role.getText(), i, 1);
-				model.setValueAt(username.getText(), i, 2);
-				model.setValueAt(pass.getText(), i, 3);
+				model.setValueAt(user.getText(), i, 2);
+				model.setValueAt(password.getText(), i, 3);
 				model.setValueAt(phone.getText(), i, 4);
 			}
 		});
@@ -189,8 +188,8 @@ public class UserView extends JFrame {
 				int i = table.getSelectedRow();
 				userid.setText(model.getValueAt(i, 0).toString());
 				role.setText(model.getValueAt(i, 0).toString());
-				username.setText(model.getValueAt(i, 0).toString());
-				pass.setText(model.getValueAt(i, 0).toString());
+				user.setText(model.getValueAt(i, 0).toString());
+				password.setText(model.getValueAt(i, 0).toString());
 				phone.setText(model.getValueAt(i, 0).toString());
 			}
 		});
@@ -201,20 +200,40 @@ public class UserView extends JFrame {
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
+		//to automatically displayed the data saved in the notepad to the JTable.
+			String filePath = "C:\\Users\\mynam\\Desktop\\PRODUCT\\USER.txt";
+			File file = new File(filePath);
+				
+			try {
+				FileReader fr = new FileReader(file);
+				BufferedReader br = new BufferedReader(fr);
+					
+				DefaultTableModel mode = (DefaultTableModel)table.getModel();
+				Object[] lines = br.lines().toArray();
+					
+				for(int i = 0; i < lines.length; i++) {
+					String[] rows = lines[i].toString().split(" ");
+					model.addRow(rows);
+				}	
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				row[0] = userid.getText();
 				row[1] = role.getText();
-				row[2] = username.getText();
-				row[3] = pass.getText();
+				row[2] = user.getText();
+				row[3] = password.getText();
 				row[4] = phone.getText();
 				model.addRow(row);
 
 				userid.setText("");
 				role.setText("");
-				username.setText("");
-				pass.setText("");
+				user.setText("");
+				password.setText("");
 				phone.setText("");
 			}
 		});
@@ -282,8 +301,8 @@ public class UserView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				userid.setText("");
 				role.setText("");
-				username.setText("");
-				pass.setText("");
+				user.setText("");
+				password.setText("");
 				phone.setText("");
 			}
 		});
@@ -291,7 +310,7 @@ public class UserView extends JFrame {
 		btnsClear.setBounds(30, 456, 231, 30);
 		contentPane.add(btnsClear);
 		
-		JButton btnExport = new JButton("EXPORT");
+		JButton btnExport = new JButton("SAVE");
 		btnExport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,"Successfully Exported!");
@@ -318,36 +337,7 @@ public class UserView extends JFrame {
 			}
 		});
 		btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnExport.setBounds(295, 496, 176, 30);
+		btnExport.setBounds(295, 496, 377, 30);
 		contentPane.add(btnExport);
-		
-		JButton btnImport = new JButton("IMPORT");
-		btnImport.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String filePath = "C:\\Users\\mynam\\Desktop\\PRODUCT\\USER.txt";
-				File file = new File(filePath);
-				
-				try {
-					FileReader fr = new FileReader(file);
-					BufferedReader br = new BufferedReader(fr);
-					
-					DefaultTableModel mode = (DefaultTableModel)table.getModel();
-					Object[] lines = br.lines().toArray();
-					
-					for(int i = 0; i < lines.length; i++) {
-						String[] row = lines[i].toString().split(" ");
-						model.addRow(row);
-					}
-					
-					
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnImport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnImport.setBounds(496, 496, 176, 30);
-		contentPane.add(btnImport);
 	}
 }

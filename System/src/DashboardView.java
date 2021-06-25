@@ -189,7 +189,9 @@ public class DashboardView extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 					CategoryView first = new CategoryView();
 					first.setVisible(true);
-					DashboardView.this.dispose();
+					DashboardView.this.setVisible(false);
+					
+					
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

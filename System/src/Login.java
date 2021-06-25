@@ -40,7 +40,7 @@ import javax.swing.JButton;
 
 public class Login extends JFrame {
 	
-	File f = new File("C:\\Users\\mynam\\Desktop\\system");
+	File f = new File("C:\\Users\\mynam\\Desktop\\ADMIN");
     int ln;
     String Username, Password;
 	  

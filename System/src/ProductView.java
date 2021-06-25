@@ -184,6 +184,25 @@ public class ProductView extends JFrame {
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
+		String filePath = "C:\\Users\\mynam\\Desktop\\PRODUCT\\PRODUCTS.txt";
+		File file = new File(filePath);
+		
+		try {
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			
+			DefaultTableModel mode = (DefaultTableModel)table.getModel();
+			Object[] lines = br.lines().toArray();
+			
+			for(int i = 0; i < lines.length; i++) {
+				String[] rows = lines[i].toString().split(" ");
+				model.addRow(rows);
+			}	
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		JButton btnNewButton = new JButton("ADD");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -298,7 +317,7 @@ public class ProductView extends JFrame {
 		btnClear.setBounds(161, 488, 100, 30);
 		contentPane.add(btnClear);
 		
-		JButton btnExport = new JButton("EXPORT");
+		JButton btnExport = new JButton("SAVE");
 		btnExport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,"Successfully Exported!");
@@ -325,36 +344,7 @@ public class ProductView extends JFrame {
 			}
 		});
 		btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnExport.setBounds(295, 488, 176, 30);
+		btnExport.setBounds(295, 488, 377, 30);
 		contentPane.add(btnExport);
-		
-		JButton btnimport = new JButton("IMPORT ");
-		btnimport.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String filePath = "C:\\Users\\mynam\\Desktop\\PRODUCT\\PRODUCTS.txt";
-				File file = new File(filePath);
-				
-				try {
-					FileReader fr = new FileReader(file);
-					BufferedReader br = new BufferedReader(fr);
-					
-					DefaultTableModel mode = (DefaultTableModel)table.getModel();
-					Object[] lines = br.lines().toArray();
-					
-					for(int i = 0; i < lines.length; i++) {
-						String[] row = lines[i].toString().split(" ");
-						model.addRow(row);
-					}
-					
-					
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnimport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnimport.setBounds(496, 488, 176, 30);
-		contentPane.add(btnimport);
 	}
 }
