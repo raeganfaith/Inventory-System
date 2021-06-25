@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +23,13 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -246,7 +254,7 @@ public class ProductView extends JFrame {
 		});
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 16));
 		CloseButton.setBounds(620, 0, 80, 41);
 		contentPane.add(CloseButton);
 		
@@ -269,14 +277,11 @@ public class ProductView extends JFrame {
 			}
 		});
 		
-		btnback.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		btnback.setFont(new Font("Arial Black", Font.PLAIN, 16));
 		btnback.setBounds(0, 0, 71, 41);
 		contentPane.add(btnback);
 		
-		JButton btnimport = new JButton("IMPORT ");
-		btnimport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnimport.setBounds(295, 488, 377, 30);
-		contentPane.add(btnimport);
+		
 		
 		JButton btnClear = new JButton("CLEAR");
 		btnClear.addActionListener(new ActionListener() {
@@ -292,5 +297,64 @@ public class ProductView extends JFrame {
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnClear.setBounds(161, 488, 100, 30);
 		contentPane.add(btnClear);
+		
+		JButton btnExport = new JButton("EXPORT");
+		btnExport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,"Successfully Exported!");
+				String filePath = "C:\\Users\\mynam\\Desktop\\PRODUCT\\PRODUCTS.txt";
+				File file = new File(filePath);
+				try {
+					FileWriter fw = new FileWriter(file);
+					BufferedWriter bw = new BufferedWriter(fw);
+					
+					for(int i = 0; i < model.getRowCount(); i++) {
+						for(int j = 0; j < model.getColumnCount(); j++) { //row
+							bw.write(model.getValueAt(i, j).toString()+" "); //column
+						}
+						bw.newLine();
+					}
+					
+					bw.close();
+					fw.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnExport.setBounds(295, 488, 176, 30);
+		contentPane.add(btnExport);
+		
+		JButton btnimport = new JButton("IMPORT ");
+		btnimport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String filePath = "C:\\Users\\mynam\\Desktop\\PRODUCT\\PRODUCTS.txt";
+				File file = new File(filePath);
+				
+				try {
+					FileReader fr = new FileReader(file);
+					BufferedReader br = new BufferedReader(fr);
+					
+					DefaultTableModel mode = (DefaultTableModel)table.getModel();
+					Object[] lines = br.lines().toArray();
+					
+					for(int i = 0; i < lines.length; i++) {
+						String[] row = lines[i].toString().split(" ");
+						model.addRow(row);
+					}
+					
+					
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnimport.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnimport.setBounds(496, 488, 176, 30);
+		contentPane.add(btnimport);
 	}
 }

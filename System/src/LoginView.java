@@ -205,7 +205,7 @@ public class LoginView extends JFrame {
 		JLabel CloseButton = new JLabel("CLOSE");
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 16));
 		CloseButton.setBounds(620, 0, 80, 41);
 		contentPane.add(CloseButton);
 		setLocationRelativeTo(null);

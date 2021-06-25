@@ -111,7 +111,7 @@ public class DashboardView extends JFrame {
 		});
 		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
 		CloseButton.setForeground(Color.BLACK);
-		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 13));
+		CloseButton.setFont(new Font("Arial Black", Font.BOLD, 16));
 		contentPane.add(CloseButton);
 		
 		JLabel lblProducts = new JLabel(" PRODUCTS");
