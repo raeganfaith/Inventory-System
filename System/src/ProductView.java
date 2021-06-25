@@ -44,7 +44,6 @@ public class ProductView extends JFrame {
 	private static JPanel contentPane;
 	private JTextField ID;
 	private JTextField name;
-	private JTextField category;
 	private JTextField quantity;
 	private JTextField price;
 	private JTextField description;
@@ -127,7 +126,7 @@ public class ProductView extends JFrame {
 		contentPane.add(lblNewLabel_3_1);
 		
 		ID = new JTextField();
-		ID.setBounds(123, 170, 139, 19);
+		ID.setBounds(123, 191, 139, 19);
 		contentPane.add(ID);
 		ID.setColumns(10);
 		
@@ -152,14 +151,9 @@ public class ProductView extends JFrame {
 		contentPane.add(lblNewLabel_3_1_4);
 		
 		name = new JTextField();
-		name.setBounds(123, 204, 139, 19);
+		name.setBounds(123, 225, 139, 19);
 		name.setColumns(10);
 		contentPane.add(name);
-		
-		category = new JTextField();
-		category.setBounds(123, 237, 139, 19);
-		category.setColumns(10);
-		contentPane.add(category);
 		
 		quantity = new JTextField();
 		quantity.setBounds(123, 292, 139, 19);
@@ -175,6 +169,12 @@ public class ProductView extends JFrame {
 		description.setBounds(123, 360, 139, 38);
 		description.setColumns(10);
 		contentPane.add(description);
+		
+		comboBox = new JComboBox();
+		combo = new DefaultComboBoxModel();
+		comboBox.setBounds(123, 257, 138, 21);
+		contentPane.add(comboBox);
+		fillComboFromTxtFile();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(295, 186, 377, 292);
@@ -214,7 +214,7 @@ public class ProductView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				row[0] = ID.getText();
 				row[1] = name.getText();
-				row[2] = category.getText();
+				row[2] = comboBox.getSelectedItem();
 				row[3] = quantity.getText();
 				row[4] = price.getText();
 				row[5] = description.getText();
@@ -222,7 +222,7 @@ public class ProductView extends JFrame {
 
 				ID.setText("");
 				name.setText("");
-				category.setText("");
+				comboBox.setSelectedItem("");
 				quantity.setText("");
 				price.setText("");
 				description.setText("");
@@ -238,7 +238,7 @@ public class ProductView extends JFrame {
 				int i = table .getSelectedRow();
 				model.setValueAt(ID.getText(), i, 0);
 				model.setValueAt(name.getText(), i, 1);
-				model.setValueAt(category.getText(), i, 2);
+				model.setValueAt(comboBox.getSelectedItem(), i, 2);
 				model.setValueAt(quantity.getText(), i, 3);
 				model.setValueAt(price.getText(), i, 4);
 				model.setValueAt(description.getText(), i, 5);
@@ -313,7 +313,7 @@ public class ProductView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ID.setText("");
 				name.setText("");
-				category.setText("");
+				comboBox.setSelectedItem("");
 				quantity.setText("");
 				price.setText("");
 				description.setText("");
@@ -382,15 +382,7 @@ public class ProductView extends JFrame {
 		});
 		btnSwitch.setFont(new Font("Tahoma", Font.BOLD, 12));
 		contentPane.add(btnSwitch);
-		
-		comboBox = new JComboBox();
-		combo = new DefaultComboBoxModel();
-		comboBox.setBounds(120, 261, 141, 21);
-		contentPane.add(comboBox);
-		
-		
-		fillComboFromTxtFile();
-		
+	
 	}
 public void fillComboFromTxtFile(){
         

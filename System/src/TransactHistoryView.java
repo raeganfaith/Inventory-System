@@ -22,8 +22,11 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionListener;
@@ -36,9 +39,7 @@ public class TransactHistoryView extends JFrame {
 	private JPanel contentPane;
 	DefaultTableModel model;
 
-	JTable table;
-	
-	
+	JTable table;	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,8 +51,7 @@ public class TransactHistoryView extends JFrame {
 				}
 			}
 		});
-	}
-	
+	}	
 	public TransactHistoryView() {
 		
 		setUndecorated(true); 
@@ -117,7 +117,25 @@ public class TransactHistoryView extends JFrame {
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
+		
+		String filePath = "C:\\\\Users\\\\mynam\\\\Desktop\\\\PRODUCT\\\\TRANSACTHISTORY.txt";
+		File file = new File(filePath);
+		
+		try {
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
 			
+			DefaultTableModel mode = (DefaultTableModel)table.getModel();
+			Object[] lines = br.lines().toArray();
+			
+			for(int i = 0; i < lines.length; i++) {
+				String[] rows = lines[i].toString().split(" ");
+				model.addRow(rows);
+			}	
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}		
 		JLabel CloseButton = new JLabel("CLOSE");
 		CloseButton.addMouseListener(new MouseAdapter() {
 			@Override
