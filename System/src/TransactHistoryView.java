@@ -32,7 +32,7 @@ public class TransactHistoryView extends JFrame {
 	private JPanel contentPane;
 	DefaultTableModel model;
 
-	private JTable table;
+	JTable table;
 	
 	
 	public static void main(String[] args) {
@@ -107,7 +107,7 @@ public class TransactHistoryView extends JFrame {
 			}
 		});
 		model = new DefaultTableModel();
-		Object[] column = {"Order Number","Date","Amount","Product ID","Category","Quantity"};
+		Object[] column = {"Product ID","Name","Category","Stock","Price","Description"};
 		final Object[] row = new Object[6];
 		//Object[] row = new Object [0];
 		model.setColumnIdentifiers(column);

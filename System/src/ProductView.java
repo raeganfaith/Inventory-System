@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -131,7 +132,7 @@ public class ProductView extends JFrame {
 		lblNewLabel_3_1_1.setBounds(31, 253, 87, 24);
 		contentPane.add(lblNewLabel_3_1_1);
 		
-		JLabel lblNewLabel_3_1_2 = new JLabel("Quantity:");
+		JLabel lblNewLabel_3_1_2 = new JLabel("Stock:");
 		lblNewLabel_3_1_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_1_2.setBounds(31, 287, 87, 24);
 		contentPane.add(lblNewLabel_3_1_2);
@@ -344,7 +345,38 @@ public class ProductView extends JFrame {
 			}
 		});
 		btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnExport.setBounds(295, 488, 377, 30);
+		btnExport.setBounds(295, 488, 165, 30);
 		contentPane.add(btnExport);
+		
+		JButton btnSwitch = new JButton("VIEW");
+		btnSwitch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TableModel model1 = table.getModel();
+				int index[] = table.getSelectedRows();
+				
+				Object[] row = new Object[6];
+				
+				TransactHistoryView th = new TransactHistoryView();
+				DefaultTableModel model2 = (DefaultTableModel)th.table.getModel();
+				
+				for(int i = 0; i < index.length; i++) {
+					row[0] = model1.getValueAt(index[i], 0);
+					row[1] = model1.getValueAt(index[i], 1);
+					row[2] = model1.getValueAt(index[i], 2);
+					row[3] = model1.getValueAt(index[i], 3);
+					row[4] = model1.getValueAt(index[i], 4);
+					row[5] = model1.getValueAt(index[i], 5);
+					
+					
+					
+					model2.addRow(row);
+				}
+				th.setVisible(true);
+			}
+		});
+		btnSwitch.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnSwitch.setBounds(507, 488, 165, 30);
+		contentPane.add(btnSwitch);
 	}
 }
