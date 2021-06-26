@@ -140,7 +140,7 @@ public class CategoryView extends JFrame {
 				name.setText(model.getValueAt(i, 0).toString()); 
 				//info.setText(model.getValueAt(i, 0).toString()); 
 			}
-		});
+		});       
 		model = new DefaultTableModel();
 		Object[] column = {"Category ID","Name"};
 		final Object[] row = new Object[2];
@@ -175,8 +175,7 @@ public class CategoryView extends JFrame {
 				model.addRow(row);
 
 				ID.setText("");
-				name.setText("");
-				
+				name.setText("");				
 			}
 		});
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
