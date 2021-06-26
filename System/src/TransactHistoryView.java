@@ -197,7 +197,6 @@ public class TransactHistoryView extends JFrame {
 						}
 						bw.newLine();
 					}
-					
 					bw.close();
 					fw.close();
 				} catch (IOException e1) {

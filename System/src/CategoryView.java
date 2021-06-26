@@ -58,10 +58,7 @@ public class CategoryView extends JFrame {
 				}
 			}
 		});
-	}
-
-	
-	
+	}	
 	public CategoryView() {
 		
 		setUndecorated(true); 
@@ -110,36 +107,28 @@ public class CategoryView extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("Category ID:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(30, 193, 87, 24);
+		lblNewLabel_3.setBounds(30, 186, 87, 24);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Name:");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1.setBounds(30, 227, 100, 24);
+		lblNewLabel_3_1.setBounds(30, 239, 100, 24);
 		contentPane.add(lblNewLabel_3_1);
 		
 		ID = new JTextField();
-		ID.setBounds(122, 198, 139, 24);
+		ID.setBounds(122, 186, 139, 29);
 		contentPane.add(ID);
 		ID.setColumns(10);
 		
-		JLabel lblNewLabel_3_1_1 = new JLabel("Info");
-		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_1.setBounds(30, 260, 87, 24);
-		contentPane.add(lblNewLabel_3_1_1);
-		
 		name = new JTextField();
 		name.setColumns(10);
-		name.setBounds(122, 232, 139, 24);
+		name.setBounds(122, 239, 139, 29);
 		contentPane.add(name);
 		
-		info = new JTextField();
-		info.setColumns(10);
-		info.setBounds(122, 265, 139, 89);
-		contentPane.add(info);
+		
 		//-------------------TABLE CONTROLLER------------------//
 		JScrollPane scrollPane = new JScrollPane(); 
-		scrollPane.setBounds(295, 186, 377, 301); 
+		scrollPane.setBounds(295, 186, 377, 347); 
 		contentPane.add(scrollPane); 
 		
 		table = new JTable(); 
@@ -149,13 +138,12 @@ public class CategoryView extends JFrame {
 				int i = table.getSelectedRow(); 
 				ID.setText(model.getValueAt(i, 0).toString()); 
 				name.setText(model.getValueAt(i, 0).toString()); 
-				info.setText(model.getValueAt(i, 0).toString()); 
+				//info.setText(model.getValueAt(i, 0).toString()); 
 			}
 		});
 		model = new DefaultTableModel();
-		Object[] column = {"Category ID","Name","Info"};
-		final Object[] row = new Object[3];
-		//Object[] row = new Object [0];
+		Object[] column = {"Category ID","Name"};
+		final Object[] row = new Object[2];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
@@ -184,16 +172,15 @@ public class CategoryView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				row[0] = ID.getText();
 				row[1] = name.getText();
-				row[2] = info.getText();
 				model.addRow(row);
 
 				ID.setText("");
 				name.setText("");
-				info.setText("");
+				
 			}
 		});
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAdd.setBounds(30, 377, 231, 30);
+		btnAdd.setBounds(30, 289, 231, 41);
 		contentPane.add(btnAdd);
 		//----------------EDIT------------
 		JButton btnEdit = new JButton("EDIT");
@@ -202,11 +189,10 @@ public class CategoryView extends JFrame {
 				int i = table .getSelectedRow();
 				model.setValueAt(ID.getText(), i, 0);
 				model.setValueAt(name.getText(), i, 1);
-				model.setValueAt(info.getText(), i, 2);
 			}
 		});
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(30, 417, 231, 30);
+		btnEdit.setBounds(30, 340, 231, 41);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("DELETE");
@@ -217,7 +203,7 @@ public class CategoryView extends JFrame {
 			}
 		});
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnDelete.setBounds(30, 457, 231, 30);
+		btnDelete.setBounds(30, 391, 231, 41);
 		contentPane.add(btnDelete);
 		
 		JLabel CloseButton = new JLabel("CLOSE");
@@ -274,7 +260,7 @@ public class CategoryView extends JFrame {
 			}
 		});
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnClear.setBounds(30, 497, 231, 30);
+		btnClear.setBounds(30, 442, 231, 40);
 		contentPane.add(btnClear);
 		
 		JButton btnExport = new JButton("SAVE");
@@ -292,8 +278,7 @@ public class CategoryView extends JFrame {
 							bw.write(model.getValueAt(i, j).toString()+" "); //column
 						}
 						bw.newLine();
-					}
-					
+					}					
 					bw.close();
 					fw.close();
 				} catch (IOException e1) {
@@ -304,7 +289,7 @@ public class CategoryView extends JFrame {
 			}
 		});
 		btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnExport.setBounds(295, 497, 377, 30);
+		btnExport.setBounds(30, 492, 231, 41);
 		contentPane.add(btnExport);
 	}
 }
