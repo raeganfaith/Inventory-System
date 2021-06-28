@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -37,14 +38,12 @@ public class CategoryView extends JFrame {
 	private Image img_logo = new ImageIcon(CategoryView.class.getResource("ress/logoh.png")).getImage().getScaledInstance(70, 100, Image.SCALE_SMOOTH);
 	
 	private JPanel contentPane;
-	private JTextField ID;
-	private JTextField name;
-	private JTextField info;
+	public JTextField ID;
+	public JTextField name;
+	public JTextField info;
 	DefaultTableModel model;
 	private JTable table;
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -141,7 +140,7 @@ public class CategoryView extends JFrame {
 		});       
 		model = new DefaultTableModel();
 		Object[] column = {"Category ID","Name"};
-		final Object[] row = new Object[2];
+		
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
@@ -164,21 +163,8 @@ public class CategoryView extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+				
 		
-		JButton btnAdd = new JButton("ADD");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				row[0] = ID.getText();
-				row[1] = name.getText();
-				model.addRow(row);
-
-				ID.setText("");
-				name.setText("");				
-			}
-		});
-		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAdd.setBounds(30, 289, 231, 41);
-		contentPane.add(btnAdd);
 		//----------------EDIT------------
 		JButton btnEdit = new JButton("EDIT");
 		btnEdit.addActionListener(new ActionListener() {
@@ -288,5 +274,38 @@ public class CategoryView extends JFrame {
 		btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnExport.setBounds(30, 492, 231, 41);
 		contentPane.add(btnExport);
+		
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.addActionListener(new ActionListener() {
+		//view
+		public void actionPerformed(ActionEvent e) {			
+			AddCategory();
+			}			
+		});
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAdd.setBounds(30, 289, 231, 41);
+		contentPane.add(btnAdd);
 	}
+	
+	//controller
+	void AddCategory() {
+		final Object[] row = new Object[2];
+		JOptionPane.showMessageDialog(null,"Successfully Exported!");
+		row[0] = ID.getText();
+		row[1] = name.getText();
+		model.addRow(row);
+
+		ID.setText("");
+		name.setText("");
+	}
+	public String getID() {
+		String Id = ID.getText();
+		return Id;
+	}
+	public String getName() {
+		String nam = name.getText();
+		return nam;
+	}
+	
+
 }

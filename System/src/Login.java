@@ -364,19 +364,19 @@ public class Login extends JFrame {
 				countLines();
 				logic(userField.getText(), passwordField.getText());
 			}});
-		JButton btnNewButton = new JButton("CANCEL");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCancelButton = new JButton("CANCEL");
+		btnCancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to go back?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {
 					LoginView first = new LoginView();
 					first.setVisible(true);
 					Login.this.dispose();
 				}}
-			}
+}
 	);
-		btnNewButton.setBackground(new Color(51, 102, 102));
-		btnNewButton.setBounds(272, 188, 101, 47);
-		panelMain.add(btnNewButton);
+		btnCancelButton.setBackground(new Color(51, 102, 102));
+		btnCancelButton.setBounds(272, 188, 101, 47);
+		panelMain.add(btnCancelButton);
 		JLabel lblUni = new JLabel("UNI");
 		lblUni.setForeground(new Color(245, 245, 245));
 		lblUni.setFont(new Font("Big John", Font.PLAIN, 57));
