@@ -1,0 +1,11 @@
+Username: CASHIER1
+Password: 12345
+
+Username: CASHIER2
+Password: 67890
+
+Username: CASHIER3
+Password: 24524
+
+Username: cashier
+Password: cashier

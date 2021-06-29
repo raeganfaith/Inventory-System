@@ -43,19 +43,6 @@ public class CategoryView extends JFrame {
 	public JTextField info;
 	DefaultTableModel model;
 	private JTable table;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CategoryView frame = new CategoryView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}	
 	public CategoryView() {
 		
 		setUndecorated(true); 
@@ -162,9 +149,7 @@ public class CategoryView extends JFrame {
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-				
-		
+		}	
 		//----------------EDIT------------
 		JButton btnEdit = new JButton("EDIT");
 		btnEdit.addActionListener(new ActionListener() {

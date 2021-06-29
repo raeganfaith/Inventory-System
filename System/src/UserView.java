@@ -43,27 +43,7 @@ public class UserView extends JFrame {
 	private JTextField password;
 	private JTextField phone;
 	DefaultTableModel model;
-
 	private JTable table;
-
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserView frame = new UserView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	
 	
 	public UserView() {
 		

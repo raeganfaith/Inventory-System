@@ -43,8 +43,6 @@ public class Login2 extends JFrame {
 	File f = new File("C:\\Users\\mynam\\Desktop\\PRODUCT");
     int ln;
     String Username, Password;
-
-	
 	//To insert images
 	private Image img_logo = new ImageIcon(Login2.class.getResource("ress/logoh.png")).getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
 	private Image img_admin = new ImageIcon(Login2.class.getResource("ress/cashier.png")).getImage().getScaledInstance(130, 175, Image.SCALE_SMOOTH); 
